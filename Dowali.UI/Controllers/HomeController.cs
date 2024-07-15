@@ -50,7 +50,7 @@ public class HomeController : BaseController
             Investigator investigator = ProjectData.investigator;
             Financial_Section financial_Section = ProjectData.Financial_Section;
 
-            var user = User.Identity.;
+            var user = User.Identity.Name;
 
 
             BaseResponse res = await _project.CreateProject(project);
