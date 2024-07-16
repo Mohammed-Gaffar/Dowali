@@ -10,14 +10,33 @@
 using Core.Entities;
 using Dowali.Core.Entities;
 using Dowali.Core.Interfaces;
+using Infrastructure.Context;
 
 namespace Dowali.Infrastructure.Repositories
 {
     public class FinanctialRepository : IFinancial
     {
-        public Task<BaseResponse> Create(Financial_Section financial)
+        private readonly DowaliContext _context;
+
+        public FinanctialRepository(DowaliContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<BaseResponse> Create(Financial_Section financial)
+        {
+            try
+            {
+                _context.Financial_Sections.Add(financial);
+                await _context.SaveChangesAsync();
+
+                return new BaseResponse { IsSuccess = true };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse { IsSuccess = false, Message = ex.ToString() };
+            }
+
         }
     }
 }

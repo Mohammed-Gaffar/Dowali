@@ -42,6 +42,18 @@ public class HomeController : BaseController
     }
 
 
+    public IActionResult Create()
+    {
+        ProjectsDTO project = new ProjectsDTO
+        {
+            investigator = new(),
+            Project = new(),
+            Financial_Section = new(),
+        };
+
+        return View(project);
+    }
+
     public async Task<IActionResult> CreateProject(ProjectsDTO ProjectData)
     {
         User userdata = new();
@@ -81,7 +93,7 @@ public class HomeController : BaseController
 
             Project project = ProjectData.Project;
             Investigator investigator = ProjectData.investigator;
-            Financial_Section financial_Section = ProjectData.Financial_Section;
+            Financial_Section financial = ProjectData.Financial_Section;
 
             BaseResponse res = await _project.CreateProject(project);
 
@@ -91,6 +103,9 @@ public class HomeController : BaseController
 
                 ProjectData.investigator.Project_Id = Project_ID;
                 ProjectData.investigator.Inv_Type = 0;                  //Internal Investgator 
+
+                investigator.Created_by = userdata.ID;
+                investigator.Create_At = DateTime.Now;
 
                 BaseResponse InvRes = await _invitgator.Create(investigator);
                 if (InvRes.IsSuccess == true)
@@ -107,14 +122,29 @@ public class HomeController : BaseController
                         Mobile_Number = ProjectData.Ext_Inv_Mobile_Number,
                         Office_Phone = ProjectData.Ext_Inv_Office_Phone,
                         Department = ProjectData.Ext_Inv_Department,
+                        Create_At = DateTime.Now,
+                        Created_by = userdata.ID,
 
                     };
 
-                    BaseResponse comres = await _invitgator.Create(Ex_Inv);
-                    if (comres.IsSuccess == true)
+                    BaseResponse ExInvRes = await _invitgator.Create(Ex_Inv);
+                    if (ExInvRes.IsSuccess == true)
                     {
-                        BasicNotification("تم حفظ بيانات المشروع بنجاح", NotificationType.Success);
-                        return View(nameof(Index));
+                        financial.Created_by = userdata.ID;
+                        financial.Create_At = DateTime.Now;
+                        financial.Project_Id = Project_ID;
+
+                        BaseResponse FinRes = await _financial.Create(financial);
+                        if (FinRes.IsSuccess == true)
+                        {
+                            BasicNotification("تم حفظ بيانات المشروع بنجاح", NotificationType.Success);
+                            return View(nameof(Index));
+                        }
+                        else
+                        {
+                            BasicNotification("حدث خطأ في اضافة البانات المالية الرجاء التواصل مع مسؤول النظام ", NotificationType.Error);
+                            return View(nameof(Index));
+                        }
                     }
                     else
                     {
@@ -133,6 +163,8 @@ public class HomeController : BaseController
             else
             {
                 BasicNotification("توجد مشكلة في اضافة بيانات المشروع", NotificationType.Error);
+                return View(nameof(Index));
+
             }
         }
 
