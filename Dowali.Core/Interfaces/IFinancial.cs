@@ -7,5 +7,7 @@ namespace Dowali.Core.Interfaces
     {
         Task<BaseResponse> Create(Financial_Section financial);
 
+        public Task<IEnumerable<Financial_Section>> GetAllFinanctial();
+
     }
 }

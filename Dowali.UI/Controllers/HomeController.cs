@@ -29,16 +29,18 @@ public class HomeController : BaseController
         _invitgator = investgator;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        ProjectsDTO project = new ProjectsDTO
+
+        ProjectsDTO ProjectsData = new ProjectsDTO
         {
-            investigator = new(),
-            Project = new(),
-            Financial_Section = new(),
+            Projects = await _project.GetAllProjects(),
+            ProjectInvestigators = await _invitgator.GetAllInvestgators(),
+            Projectinancial_Section = await _financial.GetAllFinanctial(),
+
         };
 
-        return View(project);
+        return View(ProjectsData);
     }
 
 
@@ -138,24 +140,24 @@ public class HomeController : BaseController
                         if (FinRes.IsSuccess == true)
                         {
                             BasicNotification("تم حفظ بيانات المشروع بنجاح", NotificationType.Success);
-                            return View(nameof(Index));
+                            return RedirectToAction(nameof(Index));
                         }
                         else
                         {
                             BasicNotification("حدث خطأ في اضافة البانات المالية الرجاء التواصل مع مسؤول النظام ", NotificationType.Error);
-                            return View(nameof(Index));
+                            return View(nameof(Create));
                         }
                     }
                     else
                     {
                         BasicNotification("حدث خطأ الرجاء التواصل مع مسؤول النظام ", NotificationType.Error);
-                        return View(nameof(Index));
+                        return View(nameof(Create));
                     }
                 }
                 else
                 {
                     BasicNotification("توجد اشكالية في اضافة الباحثين", NotificationType.Error);
-                    return View(nameof(Index));
+                    return View(ProjectData);
 
                 }
 
@@ -163,12 +165,12 @@ public class HomeController : BaseController
             else
             {
                 BasicNotification("توجد مشكلة في اضافة بيانات المشروع", NotificationType.Error);
-                return View(nameof(Index));
+                return View(ProjectData);
 
             }
         }
 
-        return View(nameof(Index));
+        return RedirectToAction("index");
     }
 
     //[Authorize(Roles = "Super_Admin,Admin")]

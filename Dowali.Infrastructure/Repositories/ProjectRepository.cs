@@ -32,6 +32,13 @@ namespace Dowali.Infrastructure.Repositories
             return new BaseResponse { IsSuccess = true, Message = "project added" };
         }
 
+        public async Task<IEnumerable<Project>> GetAllProjects()
+        {
+            IEnumerable<Project> projects = _dbcon.Projects;
+
+            return projects;
+        }
+
         public int GetProjectID(Project Project)
         {
 

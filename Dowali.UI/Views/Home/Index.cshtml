@@ -4,6 +4,47 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<table class="table table-striped">
+    <thead>
+        <th> ID </th>
+        <th>عوان المشروع </th>
+        <th>الباحث الداخلي</th>
+        <th>الباحث الخارجي</th>
+        <th>اجمالي التكلفة</th>
+    </thead>
+    <tbody>
+        @foreach (var project in Model.Projects)
+        {
+            <tr>
+                <td>@project.ID</td>
+                <td>@project.Title_Ar</td>
+                
+                @foreach (var investgator in Model.ProjectInvestigators)
+                {
+                    if (investgator.Project_Id == project.ID  && investgator.Inv_Type == 0 )  
+                    {
+                        <td>@investgator.Name</td>
+                    }
+
+                    if (investgator.Project_Id == project.ID && investgator.Inv_Type == 1)
+                    {
+                        <td>@investgator.Name</td>
+                    }
+                }
+
+                @foreach (var financtial in Model.Projectinancial_Section)
+                {
+                    if (financtial.Project_Id == project.ID)
+                    {
+                        <td>@financtial.Total</td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
 
 
 

@@ -32,6 +32,11 @@ namespace Dowali.Infrastructure.Repositories
             return new BaseResponse { IsSuccess = true, };
         }
 
+        public async Task<IEnumerable<Investigator>> GetAllInvestgators()
+        {
+            IEnumerable<Investigator> investigators = _context.Investigators;
 
+            return investigators;
+        }
     }
 }

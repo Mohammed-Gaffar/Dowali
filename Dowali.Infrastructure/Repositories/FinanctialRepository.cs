@@ -38,5 +38,12 @@ namespace Dowali.Infrastructure.Repositories
             }
 
         }
+
+        public async Task<IEnumerable<Financial_Section>> GetAllFinanctial()
+        {
+            IEnumerable<Financial_Section> financial_Sections = _context.Financial_Sections;
+
+            return financial_Sections;
+        }
     }
 }

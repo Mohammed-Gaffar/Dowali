@@ -1,5 +1,7 @@
 ﻿using Dowali.Core.Entities;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dowali.UI.Dto
 {
@@ -59,6 +61,23 @@ namespace Dowali.UI.Dto
         [MaxLength(255)]
         [Required(ErrorMessage = "حقل البريد الإلكتروني إلزامي")]
         public string Ext_Inv_Email { get; set; }
+
+        //===============================================================================================================
+
+
+
+        [AllowNull]
+        [NotMapped]
+        public IEnumerable<Project>? Projects { get; set; }
+
+        [AllowNull]
+        [NotMapped]
+        public IEnumerable<Investigator>? ProjectInvestigators { get; set; }
+
+
+        [AllowNull]
+        [NotMapped]
+        public IEnumerable<Financial_Section>? Projectinancial_Section { get; set; }
 
 
 

@@ -15,5 +15,6 @@ namespace Dowali.Core.Interfaces
     {
         Task<BaseResponse> Create(Investigator investgator);
 
+        public Task<IEnumerable<Investigator>> GetAllInvestgators();
     }
 }
