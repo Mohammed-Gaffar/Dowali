@@ -31,5 +31,14 @@ namespace Dowali.Infrastructure.Repositories
 
             return new BaseResponse { IsSuccess = true, Message = "project added" };
         }
+
+        public int GetProjectID(Project Project)
+        {
+
+            var Db_Project = _dbcon.Projects.FirstOrDefault(x => x.Main_Field == Project.Main_Field);
+
+
+            return Db_Project.ID;
+        }
     }
 }

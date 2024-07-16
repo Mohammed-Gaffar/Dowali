@@ -10,6 +10,7 @@ using Core.Entities.Base;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dowali.Core.Entities
 {
@@ -49,18 +50,13 @@ namespace Dowali.Core.Entities
         [Display(Name = "المجال الفرعي")]
         public string Sub_Field { get; set; }
 
-        [Required(ErrorMessage = "الباحث الداخلي الزامي")]
-        [Display(Name = "الباحث الداخلي")]
-        public int Internal_Inv_Id { get; set; }
-
-        [Required(ErrorMessage = "الباحث الخارجي الزامي")]
-        [Display(Name = "الباحث الخارجي")]
-        public int External_Int_Id { get; set; }
-
+        [AllowNull]
         [Display(Name = "ملف المشروع")]
-        public string File_Path { get; set; }
+        public string? File_Path { get; set; }
+
 
         [NotMapped]
-        public IFormFile Project_File { get; set; }
+        [Display(Name = "ملف المشروع")]
+        public IFormFile? File { get; set; }
     }
 }

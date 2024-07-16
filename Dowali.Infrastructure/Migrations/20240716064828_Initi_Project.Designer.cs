@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dowali.Infrastructure.Migrations
 {
     [DbContext(typeof(DowaliContext))]
-    [Migration("20240715124050_Edit_table_def")]
-    partial class Edit_table_def
+    [Migration("20240716064828_Initi_Project")]
+    partial class Initi_Project
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -114,67 +114,30 @@ namespace Dowali.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int>("Academic_Rank")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address_Of_Institiution")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("College_Center")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<DateTime?>("Create_At")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Created_by")
                         .HasColumnType("int");
 
-                    b.Property<string>("Ex_Inv_Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("Ext_Inv_Academic_Rank")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Ext_Inv_Address_Of_Institiution")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Ext_Inv_Department")
+                    b.Property<string>("Department")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Ext_Inv_Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("Ext_Inv_Mobile_Number")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Ext_Inv_Office_Phone")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Ext_inv_College_Center")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("Int_Inv_Academic_Rank")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Int_Inv_Address_Of_Institiution")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Int_Inv_Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Int_Inv_Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("Int_Inv_Office_Phone")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Int_inv_College_Center")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
@@ -182,17 +145,24 @@ namespace Dowali.Infrastructure.Migrations
                     b.Property<int>("Inv_Type")
                         .HasColumnType("int");
 
+                    b.Property<int>("Mobile_Number")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("Office_Phone")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Project_Id")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Update_At")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("Updated_by")
-                        .HasColumnType("int");
-
-                    b.Property<string>("int_Inv_Department")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("int_Inv_Mobile_Number")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -217,17 +187,9 @@ namespace Dowali.Infrastructure.Migrations
                     b.Property<int>("Douration")
                         .HasColumnType("int");
 
-                    b.Property<int>("External_Int_Id")
-                        .HasMaxLength(255)
-                        .HasColumnType("int");
-
                     b.Property<string>("File_Path")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Internal_Inv_Id")
-                        .HasMaxLength(255)
-                        .HasColumnType("int");
 
                     b.Property<string>("Main_Field")
                         .IsRequired()

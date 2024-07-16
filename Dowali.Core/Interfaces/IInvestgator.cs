@@ -6,8 +6,6 @@
 //Date      : July - 2024 
 /////////////////////////////////////////////////////
 
-
-
 using Core.Entities;
 using Dowali.Core.Entities;
 
@@ -16,5 +14,6 @@ namespace Dowali.Core.Interfaces
     public interface IInvestgator
     {
         Task<BaseResponse> Create(Investigator investgator);
+
     }
 }

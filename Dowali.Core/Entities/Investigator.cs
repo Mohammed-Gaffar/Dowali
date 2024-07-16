@@ -61,5 +61,7 @@ namespace Dowali.Core.Entities
         [Display(Name = "نوع الباحث")]
         public int Inv_Type { get; set; }
 
+        public int Project_Id { get; set; }
+
     }
 }

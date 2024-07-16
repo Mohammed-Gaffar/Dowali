@@ -70,7 +70,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUser, UserRepository>();
 builder.Services.AddScoped<IProject, ProjectRepository>();
-
+builder.Services.AddScoped<IInvestgator, InvestgatorRepository>();
+builder.Services.AddScoped<IFinancial, FinanctialRepository>();
 
 
 var app = builder.Build();

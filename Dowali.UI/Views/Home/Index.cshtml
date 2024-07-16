@@ -31,7 +31,7 @@
                         <br />
                     </div>
 
-                    @using (Html.BeginForm("CreateProject","Home",FormMethod.Post,new{@Encryption="multipart/Form-data"}))
+                    @using (Html.BeginForm("CreateProject", "Home", FormMethod.Post ,new { enctype = "multipart/form-data" }))
                     {
                         @* ==============================Step one Project information fields ====================================== *@
                         <div class="panel panel-primary setup-content" id="step-1">
@@ -93,9 +93,9 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            @Html.LabelFor(m => m.Project.File_Path, new { @class = "form-label required" })
-                                            <span asp-validation-for="Project.File_Path" class="text-danger"></span>
-                                            <input type="File" name="Project_File" class="attached_file form-control" />
+                                            @Html.LabelFor(m => m.Project.File , new { @class = "form-label required" })
+                                            <span asp-validation-for="Project.File" class="text-danger"></span>
+                                            <input type="File" name="Project.File" class="attached_file form-control" />
                                         </div>
 
                                     </div>
@@ -144,9 +144,9 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            @Html.LabelFor(m => m.investigator.Int_Inv_Name, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Int_Inv_Name, null, new { @class = "form-control", required = "required" })
-                                            <span asp-validation-for="investigator.Int_Inv_Name" class="text-danger"></span>
+                                            @Html.LabelFor(m => m.investigator.Name, new { @class = "form-label required" })
+                                            @Html.TextBoxFor(m => m.investigator.Name, null, new { @class = "form-control", required = "required" })
+                                            <span asp-validation-for="investigator.Name" class="text-danger"></span>
                                         </div>
                                       
                                       
@@ -154,14 +154,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            @Html.LabelFor(m => m.investigator.Int_Inv_Academic_Rank, new { @class = "form-label required" })
-                                            <select name="Int_Inv_Academic_Rank" class="form-select">
+                                            @Html.LabelFor(m => m.investigator.Academic_Rank, new { @class = "form-label required" })
+                                            <select name="Academic_Rank" class="form-select">
                                                 <option value=""></option>
                                                 <option value="معيد" class="dropdown-item">معيد</option>
                                                 <option value="دكتور">دكتور</option>
                                                 <option value="مساعد تدريس">مساعد تدريس</option>
                                             </select>
-                                            <span asp-validation-for="investigator.Int_Inv_Academic_Rank" class="text-danger"></span>
+                                            <span asp-validation-for="investigator.Academic_Rank" class="text-danger"></span>
                                         </div>
                                        
                                     </div>
@@ -169,9 +169,9 @@
                                     <div class="col-md-4">
 
                                         <div class="form-group">
-                                            @Html.LabelFor(m => m.investigator.int_Inv_Department, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.int_Inv_Department, null, new { @class = "form-control", required = "required" })
-                                            <span asp-validation-for="investigator.int_Inv_Department" class="text-danger"></span>
+                                            @Html.LabelFor(m => m.investigator.Department, new { @class = "form-label required" })
+                                            @Html.TextBoxFor(m => m.investigator.Department, null, new { @class = "form-control", required = "required" })
+                                            <span asp-validation-for="investigator.Department" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -179,17 +179,17 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            @Html.LabelFor(m => m.investigator.Int_inv_College_Center, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Int_inv_College_Center, null, new { @class = "form-control", required = "required" })
-                                            <span asp-validation-for="investigator.Int_inv_College_Center" class="text-danger"></span>
+                                            @Html.LabelFor(m => m.investigator.College_Center, new { @class = "form-label required" })
+                                            @Html.TextBoxFor(m => m.investigator.College_Center, null, new { @class = "form-control", required = "required" })
+                                            <span asp-validation-for="investigator.College_Center" class="text-danger"></span>
                                         </div>
                                         
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            @Html.LabelFor(m => m.investigator.Int_Inv_Address_Of_Institiution, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Int_Inv_Address_Of_Institiution, null, new { @class = "form-control", required = "required" })
-                                            <span asp-validation-for="investigator.Int_Inv_Address_Of_Institiution" class="text-danger"></span>
+                                            @Html.LabelFor(m => m.investigator.Address_Of_Institiution, new { @class = "form-label required" })
+                                            @Html.TextBoxFor(m => m.investigator.Address_Of_Institiution, null, new { @class = "form-control", required = "required" })
+                                            <span asp-validation-for="investigator.Address_Of_Institiution" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -197,23 +197,23 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            @Html.LabelFor(m => m.investigator.Int_Inv_Office_Phone, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Int_Inv_Office_Phone, null, new { @class = "form-control", required = "required",type="number" })
-                                            <span asp-validation-for="investigator.Int_Inv_Office_Phone" class="text-danger"></span>
+                                            @Html.LabelFor(m => m.investigator.Office_Phone, new { @class = "form-label required" })
+                                            @Html.TextBoxFor(m => m.investigator.Office_Phone, null, new { @class = "form-control", required = "required",type="number" })
+                                            <span asp-validation-for="investigator.Office_Phone" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            @Html.LabelFor(m => m.investigator.int_Inv_Mobile_Number, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.int_Inv_Mobile_Number, null, new { @class = "form-control", required = "required", type = "number" })
-                                            <span asp-validation-for="investigator.int_Inv_Mobile_Number" class="text-danger"></span>
+                                            @Html.LabelFor(m => m.investigator.Mobile_Number, new { @class = "form-label required" })
+                                            @Html.TextBoxFor(m => m.investigator.Mobile_Number, null, new { @class = "form-control", required = "required", type = "number" })
+                                            <span asp-validation-for="investigator.Mobile_Number" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            @Html.LabelFor(m => m.investigator.Int_Inv_Email, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Int_Inv_Email, null, new { @class = "form-control", required = "required" ,type="email"})
-                                            <span asp-validation-for="investigator.Int_Inv_Email" class="text-danger"></span>
+                                            @Html.LabelFor(m => m.investigator.Email, new { @class = "form-label required" })
+                                            @Html.TextBoxFor(m => m.investigator.Email, null, new { @class = "form-control", required = "required" ,type="email"})
+                                            <span asp-validation-for="investigator.Email" class="text-danger"></span>
                                         </div>
                                         </div>
                                 </div>

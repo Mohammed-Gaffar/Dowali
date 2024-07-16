@@ -3,12 +3,13 @@ using Core.Interfaces;
 using Dowali.Core.Entities;
 using Dowali.Core.Interfaces;
 using Dowali.UI.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlayApp.Extentions;
 
 namespace PlayApp.Controllers;
 
-//[Authorize]
+[Authorize]
 public class HomeController : BaseController
 {
     private readonly ILogger<HomeController> _logger;
@@ -43,31 +44,99 @@ public class HomeController : BaseController
 
     public async Task<IActionResult> CreateProject(ProjectsDTO ProjectData)
     {
+        User userdata = new();
 
-        if (ModelState.IsValid)
+        if (ProjectData.Project.File != null)
         {
+            string ext = Path.GetExtension(ProjectData.Project.File.FileName);
+            if (ext.ToLower() != ".pdf")
+            {
+                BasicNotification("الملفات المسموحة هي الملفات ذات الامتداد .PDF فقط ", NotificationType.Error);
+                return View(nameof(Index));
+            }
+            else
+            {
+                //var newfilename = await SaveFile(service.File);
+                ProjectData.Project.File_Path = ProjectData.Project.File.FileName;
+
+            }
+
+        }
+
+        if (ModelState.IsValid == true)
+        {
+            if (User.Identity.Name != null)
+            {
+                userdata = await _user.GetByName(User.Identity.Name);
+
+                ProjectData.Project.Create_At = DateTime.Now;
+                ProjectData.Project.Created_by = userdata.ID;
+
+            }
+            else
+            {
+                BasicNotification("حدثت مشكلة الرجاء التواصل  مع مسؤول النظام", NotificationType.Error);
+                return View(nameof(Index));
+            }
+
             Project project = ProjectData.Project;
             Investigator investigator = ProjectData.investigator;
             Financial_Section financial_Section = ProjectData.Financial_Section;
 
-            var user = User.Identity.Name;
-
-
             BaseResponse res = await _project.CreateProject(project);
+
             if (res.IsSuccess == true)
             {
-                await _invitgator.Create(investigator);
+                int Project_ID = _project.GetProjectID(project);
 
-                Investigator Ex_Inv = new Investigator
+                ProjectData.investigator.Project_Id = Project_ID;
+                ProjectData.investigator.Inv_Type = 0;                  //Internal Investgator 
+
+                BaseResponse InvRes = await _invitgator.Create(investigator);
+                if (InvRes.IsSuccess == true)
                 {
-                    Academic_Rank = ProjectData.Ext_Inv_Academic_Rank,
-                    Address_Of_Institiution = ProjectData.Ext_Inv_Address_Of_Institiution,
-                    College_Center = ProjectData.Ext_inv_College_Center,
+                    Investigator Ex_Inv = new Investigator
+                    {
+                        Academic_Rank = ProjectData.Ext_Inv_Academic_Rank,
+                        Address_Of_Institiution = ProjectData.Ext_Inv_Address_Of_Institiution,
+                        College_Center = ProjectData.Ext_inv_College_Center,
+                        Email = ProjectData.Ext_Inv_Email,
+                        Name = ProjectData.Ex_Inv_Name,
+                        Project_Id = Project_ID,
+                        Inv_Type = 1,                                       //External Invetgator
+                        Mobile_Number = ProjectData.Ext_Inv_Mobile_Number,
+                        Office_Phone = ProjectData.Ext_Inv_Office_Phone,
+                        Department = ProjectData.Ext_Inv_Department,
 
-                };
+                    };
+
+                    BaseResponse comres = await _invitgator.Create(Ex_Inv);
+                    if (comres.IsSuccess == true)
+                    {
+                        BasicNotification("تم حفظ بيانات المشروع بنجاح", NotificationType.Success);
+                        return View(nameof(Index));
+                    }
+                    else
+                    {
+                        BasicNotification("حدث خطأ الرجاء التواصل مع مسؤول النظام ", NotificationType.Error);
+                        return View(nameof(Index));
+                    }
+                }
+                else
+                {
+                    BasicNotification("توجد اشكالية في اضافة الباحثين", NotificationType.Error);
+                    return View(nameof(Index));
+
+                }
+
+            }
+            else
+            {
+                BasicNotification("توجد مشكلة في اضافة بيانات المشروع", NotificationType.Error);
             }
         }
-        return View();
+
+        return View(nameof(Index));
     }
 
     //[Authorize(Roles = "Super_Admin,Admin")]

@@ -13,7 +13,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Context
 {
-    public class DowaliContext:DbContext
+    public class DowaliContext : DbContext
     {
         public DowaliContext(DbContextOptions<DowaliContext> options)
           : base(options)

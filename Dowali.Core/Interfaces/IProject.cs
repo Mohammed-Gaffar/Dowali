@@ -7,5 +7,6 @@ namespace Dowali.Core.Interfaces
     {
         Task<BaseResponse> CreateProject(Project Project);
 
+        int GetProjectID(Project Project);
     }
 }

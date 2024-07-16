@@ -11,14 +11,27 @@
 using Core.Entities;
 using Dowali.Core.Entities;
 using Dowali.Core.Interfaces;
+using Infrastructure.Context;
 
 namespace Dowali.Infrastructure.Repositories
 {
     public class InvestgatorRepository : IInvestgator
     {
-        public Task<BaseResponse> Create(Investigator investgator)
+        private readonly DowaliContext _context;
+
+        public InvestgatorRepository(DowaliContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
+
+        public async Task<BaseResponse> Create(Investigator investgator)
+        {
+            _context.Investigators.Add(investgator);
+            await _context.SaveChangesAsync();
+
+            return new BaseResponse { IsSuccess = true, };
+        }
+
+
     }
 }
