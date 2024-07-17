@@ -3,13 +3,12 @@ using Core.Interfaces;
 using Dowali.Core.Entities;
 using Dowali.Core.Interfaces;
 using Dowali.UI.Dto;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlayApp.Extentions;
 
 namespace PlayApp.Controllers;
 
-[Authorize]
+//[Authorize]
 public class HomeController : BaseController
 {
     private readonly ILogger<HomeController> _logger;

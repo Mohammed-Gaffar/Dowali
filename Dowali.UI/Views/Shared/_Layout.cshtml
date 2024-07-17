@@ -7,17 +7,17 @@
 
 
 
+    <link rel="stylesheet" href="~/them/css/bootstrap_ar.min.css">
+    <link rel="stylesheet" href="~/them/css/kfu_ar.css">
+    <link rel="stylesheet" href="~/them/css/site_ar.css">
+    <link rel="stylesheet" href="~/them/css/media_ar.css">
+
+
+
     <!-- Favico -->
-    <link rel="apple-touch-icon" sizes="180x180" href="~/assets/imgs/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="~/assets/imgs/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="~/assets/imgs/favicon/favicon-16x16.png">
-    <link rel="manifest" href="~/assets/imgs/favicon/site.webmanifest">
-    <link rel="mask-icon" href="~/assets/imgs/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="theme-color" content="#ffffff">
+    
 
     <!-- Core Css Files -->
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/assets/css/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/assets/css/identity.css" />
 
@@ -33,61 +33,110 @@
 
 </head>
 
-<body dir="rtl">
+<body>
+    <div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
 
-    <nav class="main_navbar">
-        <nav class="navbar navbar-expand-lg top_nav">
-            <div class="container-fluid">
-                <a class="kfu_logo_wrap" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/assets/imgs/KFU_Logo_Dark.png" alt="KFU ICON LOGO">
-                </a>
+        <!-- Side Actions -->
+        <aside class="side-actions hidden-xs hidden-sm">
+            <a href="#!" class="log-lang">En</a>
+            <ul class="nav">
+                <li class="custom-tooltip" data-toggle="tooltip" data-placement="right" title="الموقع الرئيسي">
+                    <a target="_blank" href="https://www.kfu.edu.sa/sites/Home/"><i class="si si-home"></i></a>
+                </li>
+                <li class="custom-tooltip" data-toggle="tooltip" data-placement="right" title="البريد الإلكتروني">
+                    <a target="_blank" href="https://mail.kfu.edu.sa"><i class="si si-envelope"></i></a>
+                </li>
+                <li class="custom-tooltip" data-toggle="tooltip" data-placement="right" title="الإدارة العليا">
+                    <a target="_blank"
+                       href="https://www.kfu.edu.sa/ar/Departments/SeniorManagement/Pages/welcome_new.aspx">
+                        <i class="si si-users"></i>
+                    </a>
+                </li>
+                <li class="custom-tooltip" data-toggle="tooltip" data-placement="right" title="سياسة الخصوصية">
+                    <a target="_blank" href="https://www.kfu.edu.sa/ar/Deans/it/Pages/Privacy_policy.aspx">
+                        <i class="si si-shield"></i>
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="bi bi-list"></i>
-                </button>
-                <div class="offcanvas offcanvas-end" id="navbarSupportedContent">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Services Catalog</h5>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+
+
+
+        <!-- Header -->
+        <header id="header-navbar" class="content-mini content-mini-full">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="https://www.kfu.edu.sa/"><img src="@Url.Content("~/images/logo.png")" border="0" alt="" style="width: 165px"></a>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-xs-4 col-sm-4 text-center" style="margin-top:10px">
+                        <a href="@Url.Action("Index","Home")" class="block r-shape">
+                            <div class="block-content block-content-full" style="padding:0px">
+                                <div class="font-w700 h5 push-5-t">
+                                    الصفحة الرئيسية
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="offcanvas-body justify-content-end">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">الصفحة الرئيسية</a>
-                            </li>
-                            @if (User.IsInRole("Admin") || User.IsInRole("Super_Admin"))
-                            {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Users" asp-action="Index">المستخدمين</a>
-                            </li>
-                            <li>
-                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Create">إضافة</a>
-                            </li>
-                            }
-                        </ul>
-                        <ul class="navbar-nav align-items-center d-none d-lg-flex">
-                            <li class="nav-item">|</li>
-                        </ul>
-                        <partial name="_LoginPartial" />
-                       
+                    <div class="col-xs-4 col-sm-4 text-center" style="margin-top:10px">
+                        <a href="#!" class="block r-shape">
+                            <div class="block-content block-content-full" style="padding:0px">
+                                <div class="font-w700 h5 push-5-t">
+                                    الطلبات الواردة
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 text-center" style="margin-top:10px">
+                        <a href="#!" class="block r-shape">
+                            <div class="block-content block-content-full" style="padding:0px">
+                                <div class="font-w700 h5 push-5-t">
+                                    تسجيل الخروج
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </nav>
-    </nav>
+        </header>
+        <!-- Main Container -->
+        <main id="main-container" class="slim-scroll smooth">
 
-    <main role="main">
-        @RenderBody()
-    </main>
+            <aside class="myside-actions hidden-xs hidden-sm">
+                <ul class="nav">
+                    <div class="dropdown">
+                        <button class="dropbtn">Dropdown</button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn">Dropdown</button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div>
+                </ul>
+            </aside>
 
-    <footer class="bg-blue py-3">
-        <p class="m-0 text-white text-center">
-            All Rights Reserved for KFU © 2024 | Designed and Developed by Deanship of E-Learning and Information Technology
-        </p>
-    </footer>
-
-
+            <div class="container-fluid p-20-t">
+                <div class="control_panal_body">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+        <!-- footer -->
+        <footer id="page-footer" class="copyright">
+            <span>جميع الحقوق محفوظة <span class="">©</span> 2021 </span>
+            <span> لجامعة الملك فيصل</span> <span>| تصميم وتطوير عمادة تقنية المعلومات</span>
+        </footer>
+    </div>
 
 
     <script src="~/assets/js/popper.min.js"></script>
@@ -105,4 +154,5 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
