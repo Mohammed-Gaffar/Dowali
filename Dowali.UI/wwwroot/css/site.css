@@ -47,8 +47,9 @@ body {
 /*@import url('//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css');*/
 
 
-body {
-    margin-top: 30px;
+.container {
+    margin-top:60px;    
+
 }
 
 .stepwizard-step p {
@@ -58,12 +59,16 @@ body {
 
 .stepwizard-row {
     display: table-row;
+   
 }
 
 .stepwizard {
+    margin-right: 11%;
     display: table;
-    width: 100%;
+    width: 80%;
     position: relative;
+    justify-content: center;
+    margin-right: 20%
 }
 
 .stepwizard-step button[disabled] {
@@ -81,10 +86,11 @@ body {
     bottom: 0;
     position: absolute;
     content: " ";
-    width: 100%;
+    width: 50%;
     height: 1px;
     background-color: #ccc;
     z-index: 0;
+    margin-right: 142px
 }
 
 .stepwizard-step {
@@ -125,6 +131,7 @@ body {
     font-size: 16px;
     border: none;
     width:200px;
+    
 }
 
 .dropdown {
@@ -157,4 +164,15 @@ body {
 
 .dropdown:hover .dropbtn {
     background-color: #0d6f77;
+}
+
+
+#main-container {
+    height: 950px !important;
+        padding-right:5%
+
+}
+
+.container {
+    width: 87% !important;
 }

@@ -8,11 +8,10 @@
 
 
 <!-- MultiStep Form -->
-<div class="row" style="justify-content:center;display:flex;margin:5%">
-    <div class="col-md-10">
+<div class="row" style="justify-content:center;display:flex">
+    <div class="col-md-12" style="padding-right:9%">
         <div class="card">
             <div class="card-body">
-                <div class="container">
                     <div class="stepwizard">
                         <div class="stepwizard-row setup-panel">
                             <div class="stepwizard-step col-xs-3">
@@ -118,11 +117,13 @@
                                     </div>
 
 
-                                    <div style="padding-top:10px">
-                                        <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
-                                    </div>
-
                                 </div>
+
+                                <br />
+                                <br />
+
+
+                                <button class="btn btn-primary nextBtn pull-right" type="button">التالي</button>
                                 <br />
                             </div>
                         </div>
@@ -155,7 +156,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.investigator.Academic_Rank, new { @class = "form-label required" })
-                                            <select name="Academic_Rank" class="form-select">
+                                            <select name="Academic_Rank" class="form-select form-control">
                                                 <option value=""></option>
                                                 <option value="معيد" class="dropdown-item">معيد</option>
                                                 <option value="دكتور">دكتور</option>
@@ -239,7 +240,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Ext_Inv_Academic_Rank, new { @class = "form-label required" })
                                             <span asp-validation-for="Ext_Inv_Academic_Rank" class="text-danger"></span>
-                                            <select name="Ex_Inv_Academic_Rank" class="form-select">
+                                            <select name="Ex_Inv_Academic_Rank" class="form-select form-control">
                                                 <option value=""></option>
                                                 <option value="معيد" class="dropdown-item">معيد</option>
                                                 <option value="دكتور">دكتور</option>
@@ -301,8 +302,9 @@
                                     </div>
                                 </div>
 
-
-                                <button class="btn btn-primary nextBtn pull-right" type="button">Next</button>
+                                <br>
+                                
+                                <button class="btn btn-primary nextBtn pull-right" type="button">التالي</button>
                             </div>
                         </div>
                         @* ============================== End Step Two investggators information fields ====================================== *@
@@ -396,7 +398,6 @@
                         @* ============================== End Step tree Finantial information fields ====================================== *@
 
                     }
-                </div>
 
             </div>
         </div>

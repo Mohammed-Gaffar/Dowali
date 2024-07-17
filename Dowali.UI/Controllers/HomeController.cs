@@ -5,6 +5,7 @@ using Dowali.Core.Interfaces;
 using Dowali.UI.Dto;
 using Microsoft.AspNetCore.Mvc;
 using PlayApp.Extentions;
+using UserServiceReference;
 
 namespace PlayApp.Controllers;
 
@@ -43,11 +44,26 @@ public class HomeController : BaseController
     }
 
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
+        UsersManagerClient ManagerClient = new UsersManagerClient();
+        var users = await ManagerClient.FindUserInActiveDirectoryAsync(User.Identity.Name);
+
+
+
         ProjectsDTO project = new ProjectsDTO
         {
-            investigator = new(),
+            investigator = new()
+            {
+                Name = users.FullNameAr,
+                Academic_Rank =Convert.ToInt32(users.GPA),
+                College_Center = users.ColleageName,
+                Department = users.DepartmentName,
+                Mobile_Number = Convert.ToInt32(users.Mobile),
+                Email = users.Email,
+                Office_Phone = Convert.ToInt32(users.Phone),
+                
+            },
             Project = new(),
             Financial_Section = new(),
         };
