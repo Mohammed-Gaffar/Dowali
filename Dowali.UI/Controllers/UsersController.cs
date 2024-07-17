@@ -70,9 +70,6 @@ namespace PlayApp.Controllers
             {
                 return View(user);
             }
-
-
-            return View(nameof(Index));
         }
 
         [Authorize(Roles = "Super_Admin,Admin")]

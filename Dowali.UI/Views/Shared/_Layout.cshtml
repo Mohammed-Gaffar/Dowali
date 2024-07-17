@@ -96,21 +96,17 @@
         <!-- Main Container -->
         <main id="main-container" class="slim-scroll smooth">
 
-            <aside class="myside-actions hidden-xs hidden-sm" style="height:350px;margin-top:10%">
+            <aside class="myside-actions hidden-xs hidden-sm">
                 <ul class="nav">
                     <div class="dropdown" style="margin-top:15px">
-                        <button class="dropbtn">الرئيسية</button>
-                        <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
+                        <a asp-action="Index" asp-controller="Home"><button class="dropbtn">الرئيسية</button></a>
                     </div>
-
+                    
                     <div class="dropdown">
                         <button class="dropbtn">المشاريع</button>
                         <div class="dropdown-content">
                             <a asp-action="Index" asp-controller="Home">المشاريع</a>
+                            <hr style="margin:0" />
                             <a asp-action="Create" asp-controller="Home" >اضافة مشروع</a>
                         </div>
                     </div>
