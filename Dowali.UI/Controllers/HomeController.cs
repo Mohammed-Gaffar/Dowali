@@ -3,9 +3,10 @@ using Core.Interfaces;
 using Dowali.Core.Entities;
 using Dowali.Core.Interfaces;
 using Dowali.UI.Dto;
+using Dowali.UI.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlayApp.Extentions;
-using UserServiceReference;
 
 namespace PlayApp.Controllers;
 
@@ -46,22 +47,35 @@ public class HomeController : BaseController
 
     public async Task<IActionResult> Create()
     {
-        UsersManagerClient ManagerClient = new UsersManagerClient();
-        var users = await ManagerClient.FindUserInActiveDirectoryAsync(User.Identity.Name);
+
+        //===================Kfu Users Service =====================================
+
+        //UsersManagerClient ManagerClient = new UsersManagerClient();
+        //var users = await ManagerClient.FindUserInActiveDirectoryAsync(User.Identity.Name);
+
+        //ProjectsDTO project = new ProjectsDTO
+        //{
+        //    investigator = new()
+        //    {
+        //        Name = users.FullNameAr,
+        //        Academic_Rank = Convert.ToInt32(users.GPA),
+        //        College_Center = users.ColleageName,
+        //        Department = users.DepartmentName,
+        //        Mobile_Number = Convert.ToInt32(users.Mobile),
+        //        Email = users.Email,
+        //        Office_Phone = Convert.ToInt32(users.Phone),
+
+        //    },
+        //    Project = new(),
+        //    Financial_Section = new(),
+        //};
+
+        //UsersManagerClient ManagerClient = new UsersManagerClient();
+        //var users = await ManagerClient.FindUserInActiveDirectoryAsync(User.Identity.Name);
 
         ProjectsDTO project = new ProjectsDTO
         {
-            investigator = new()
-            {
-                Name = users.FullNameAr,
-                Academic_Rank = Convert.ToInt32(users.GPA),
-                College_Center = users.ColleageName,
-                Department = users.DepartmentName,
-                Mobile_Number = Convert.ToInt32(users.Mobile),
-                Email = users.Email,
-                Office_Phone = Convert.ToInt32(users.Phone),
-
-            },
+            investigator = new(),
             Project = new(),
             Financial_Section = new(),
         };
@@ -83,8 +97,11 @@ public class HomeController : BaseController
             }
             else
             {
-                //var newfilename = await SaveFile(service.File);
-                ProjectData.Project.File_Path = ProjectData.Project.File.FileName;
+                //ManageFiles newfilename = await SaveFile(ProjectData.Project.File);
+                //ProjectData.Project.File_Path = ProjectData.Project.File.FileName;
+
+                var newfilename = await SaveFile(ProjectData.Project.File);
+                ProjectData.Project.File_Path = newfilename;
 
             }
 
@@ -185,6 +202,43 @@ public class HomeController : BaseController
 
         return RedirectToAction("index");
     }
+
+
+    [AllowAnonymous]
+    public async Task<IActionResult> ShowFile(string FileName)
+    {
+        var obj = new ManageFiles();
+        var file = await obj.GetFileInBytes(FileName);
+        return File(file, "application/pdf", "ServicesFile" + ".pdf");
+    }
+
+
+    public async Task<string> SaveFile(IFormFile file)
+    {
+        try
+        {
+            ManageFiles obj = new ManageFiles();
+            return await obj.Upload(file);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public async Task<string> ViewFile(string FileName)
+    {
+        try
+        {
+            ManageFiles obj = new ManageFiles();
+            return await obj.View(FileName);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
 
     //[Authorize(Roles = "Super_Admin,Admin")]
     //public IActionResult Create()
