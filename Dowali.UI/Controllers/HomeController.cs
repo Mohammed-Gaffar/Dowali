@@ -44,7 +44,6 @@ public class HomeController : BaseController
         return View(ProjectsData);
     }
 
-
     public async Task<IActionResult> Create()
     {
 
@@ -97,13 +96,10 @@ public class HomeController : BaseController
             }
             else
             {
-                //ManageFiles newfilename = await SaveFile(ProjectData.Project.File);
-                //ProjectData.Project.File_Path = ProjectData.Project.File.FileName;
-
                 var newfilename = await SaveFile(ProjectData.Project.File);
                 ProjectData.Project.File_Path = newfilename;
-
             }
+
 
         }
 
@@ -203,7 +199,6 @@ public class HomeController : BaseController
         return RedirectToAction("index");
     }
 
-
     [AllowAnonymous]
     public async Task<IActionResult> ShowFile(string FileName)
     {
@@ -211,7 +206,6 @@ public class HomeController : BaseController
         var file = await obj.GetFileInBytes(FileName);
         return File(file, "application/pdf", "ServicesFile" + ".pdf");
     }
-
 
     public async Task<string> SaveFile(IFormFile file)
     {

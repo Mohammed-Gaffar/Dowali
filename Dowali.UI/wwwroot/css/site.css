@@ -121,8 +121,8 @@ body {
     width: 200px;
     background-color: #c59944;
     border-radius: 10px 0px 0px 10px;
-    height: 350px;
-    margin-top: 12%
+    height: fit-content;
+    margin-top: 18%
 }
 
 /*===========================DropDown items=======================*/
@@ -155,7 +155,6 @@ body {
         text-decoration: none;
         display: block;
         background-color: #0d6f77;
-        border-radius: 20px 0px 0px 20px;
     }
 
 .dropdown-content a:hover {
@@ -180,4 +179,18 @@ body {
 
 .container {
     width: 87% !important;
+}
+
+.first-item  {
+    border-radius:20px 0px 0px 0px;
+}
+
+.last-item{
+    border-radius:0px 0px 0px 30px ;
+}
+
+#header-navbar {
+    border-bottom: 4px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to left,#c59944, #0d6f77);
 }
