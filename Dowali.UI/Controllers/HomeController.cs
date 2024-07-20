@@ -7,6 +7,7 @@ using Dowali.UI.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlayApp.Extentions;
+using UserServiceReference;
 
 namespace PlayApp.Controllers;
 
@@ -46,40 +47,43 @@ public class HomeController : BaseController
 
     public async Task<IActionResult> Create()
     {
-
-        //===================Kfu Users Service =====================================
-
-        //UsersManagerClient ManagerClient = new UsersManagerClient();
-        //var users = await ManagerClient.FindUserInActiveDirectoryAsync(User.Identity.Name);
-
-        //ProjectsDTO project = new ProjectsDTO
-        //{
-        //    investigator = new()
-        //    {
-        //        Name = users.FullNameAr,
-        //        Academic_Rank = Convert.ToInt32(users.GPA),
-        //        College_Center = users.ColleageName,
-        //        Department = users.DepartmentName,
-        //        Mobile_Number = Convert.ToInt32(users.Mobile),
-        //        Email = users.Email,
-        //        Office_Phone = Convert.ToInt32(users.Phone),
-
-        //    },
-        //    Project = new(),
-        //    Financial_Section = new(),
-        //};
-
-        //UsersManagerClient ManagerClient = new UsersManagerClient();
-        //var users = await ManagerClient.FindUserInActiveDirectoryAsync(User.Identity.Name);
-
-        ProjectsDTO project = new ProjectsDTO
+        ProjectsDTO project = new ProjectsDTO();
+        try
         {
-            investigator = new(),
-            Project = new(),
-            Financial_Section = new(),
-        };
+            //=================== Kfu Users Service =====================================
 
-        return View(project);
+            UsersManagerClient ManagerClient = new UsersManagerClient();
+            var users = await ManagerClient.FindUserInActiveDirectoryAsync(User.Identity.Name);
+
+            {
+                project.investigator = new()
+                {
+                    Name = users.FullNameAr,
+                    Academic_Rank = Convert.ToInt32(users.GPA),
+                    College_Center = users.ColleageName,
+                    Department = users.DepartmentName,
+                    Mobile_Number = Convert.ToInt32(users.Mobile),
+                    Email = users.Email,
+                    Office_Phone = Convert.ToInt32(users.Phone),
+
+                };
+                project.Project = new();
+                project.Financial_Section = new();
+            }
+            return View(project);
+        }
+        catch (Exception Ex)
+        {
+            project.investigator = new();
+            project.Project = new();
+            project.Financial_Section = new();
+
+            BasicNotification("لم نتمكن من الحصول على البيانات الرجاء التواصل مع تقنية المعلومات<BR><br>" + Ex.Message.ToString(), NotificationType.Warning);
+            return View(project);
+
+
+        }
+
     }
 
     public async Task<IActionResult> CreateProject(ProjectsDTO ProjectData)
@@ -99,8 +103,6 @@ public class HomeController : BaseController
                 var newfilename = await SaveFile(ProjectData.Project.File);
                 ProjectData.Project.File_Path = newfilename;
             }
-
-
         }
 
         if (ModelState.IsValid == true)
@@ -136,6 +138,7 @@ public class HomeController : BaseController
                 investigator.Create_At = DateTime.Now;
 
                 BaseResponse InvRes = await _invitgator.Create(investigator);
+
                 if (InvRes.IsSuccess == true)
                 {
                     Investigator Ex_Inv = new Investigator
@@ -176,7 +179,7 @@ public class HomeController : BaseController
                     }
                     else
                     {
-                        BasicNotification("حدث خطأ الرجاء التواصل مع مسؤول النظام ", NotificationType.Error);
+                        BasicNotification("حدث خطأ ف اضافة الباحث الخارجي الرجاء التواصل مع مسؤول النظام ", NotificationType.Error);
                         return View(nameof(Create));
                     }
                 }
@@ -192,11 +195,14 @@ public class HomeController : BaseController
             {
                 BasicNotification("توجد مشكلة في اضافة بيانات المشروع", NotificationType.Error);
                 return View(ProjectData);
-
             }
         }
+        else
+        {
+            BasicNotification("الرجاء التحقق من تعبئة جميع الحقول", NotificationType.Info);
+        }
 
-        return RedirectToAction("index");
+        return View("Create", ProjectData);
     }
 
     [AllowAnonymous]
@@ -204,7 +210,7 @@ public class HomeController : BaseController
     {
         var obj = new ManageFiles();
         var file = await obj.GetFileInBytes(FileName);
-        return File(file, "application/pdf", "ServicesFile" + ".pdf");
+        return File(file, "application/pdf", "Project_Information" + ".pdf");
     }
 
     public async Task<string> SaveFile(IFormFile file)
@@ -233,109 +239,4 @@ public class HomeController : BaseController
         }
     }
 
-
-    //[Authorize(Roles = "Super_Admin,Admin")]
-    //public IActionResult Create()
-    //{
-    //    return View();
-    //}
-
-    //[Authorize(Roles = "Super_Admin,Admin")]
-    //[HttpPost]
-    //public async Task<IActionResult> Create(Service service)
-    //{
-    //    User createduser;
-    //    if (User.Identity.Name != null)
-    //    {
-    //        createduser = await _user.GetByName(User.Identity.Name);
-    //    }
-    //    else
-    //    {
-    //        return RedirectToAction(nameof(Index));
-    //    }
-
-    //    if (ModelState.IsValid)
-    //    {
-    //        service.Create_At = DateTime.Now;
-    //        service.Created_by = createduser.ID;
-    //        BaseResponse res = await _services.Create(service);
-    //        if (res.IsSuccess == true)
-    //        {
-    //            BasicNotification("تم اضافة البيانات بنجاح", NotificationType.Success);
-    //            return RedirectToAction(nameof(Index));
-    //        }
-    //        else
-    //        {
-    //            BasicNotification(res.Message ?? "", NotificationType.Error);
-    //            return RedirectToAction(nameof(Create), service);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        return View(service);
-    //    }
-
-    //}
-
-    //[Authorize(Roles = "Super_Admin,Admin")]
-    //public IActionResult Active(int Id)
-    //{
-    //    _services.Activate(Id);
-
-    //    BasicNotification("تم تفعيل الخدمة ", NotificationType.Success);
-    //    return RedirectToAction(nameof(Index));
-    //}
-
-    //[Authorize(Roles = "Super_Admin,Admin")]
-    //public IActionResult DeActive(int Id)
-    //{
-    //    _services.DeActivate(Id);
-    //    BasicNotification("تم الغاء تفعيل الخدمة ", NotificationType.Warning);
-    //    return RedirectToAction(nameof(Index));
-    //}
-
-    //[Authorize(Roles = "Super_Admin,Admin")]
-    //public async Task<IActionResult>  Edit(int Id) {
-    //    Service service = await _services.GetById(Id);
-    //    return View(service);
-    //}
-
-    //[Authorize(Roles = "Super_Admin,Admin")]
-    //[HttpPost]
-    //public async Task<IActionResult> Edit(Service service)
-    //{
-    //    User createduser;
-    //    if (User.Identity.Name != null)
-    //    {
-    //        createduser = await _user.GetByName(User.Identity.Name);
-    //    }
-    //    else
-    //    {
-    //        return RedirectToAction(nameof(Index));
-    //    }
-
-    //    if (ModelState.IsValid)
-    //    {
-    //        service.Update_At = DateTime.Now;
-    //        service.Updated_by = createduser.ID;
-    //        BaseResponse res = await _services.Update(service);
-    //        if (res.IsSuccess == true)
-    //        {
-    //            BasicNotification("تم اضافة البيانات بنجاح", NotificationType.Success);
-    //            return RedirectToAction(nameof(Index));
-    //        }
-    //        else
-    //        {
-    //            BasicNotification(res.Message ?? "", NotificationType.Error);
-    //            return RedirectToAction(nameof(Create), service);
-    //        }
-    //    }
-    //    return View(service);
-    //}
-
-    //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    //public IActionResult Error()
-    //{
-    //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    //}
 }

@@ -2,7 +2,7 @@
 
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "انشاء مشروع جديد ";
 }
 
 
@@ -46,7 +46,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Project.Title_Ar, new { @class = "form-label required" })
                                             <span asp-validation-for="Project.Title_Ar" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Project.Title_Ar, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Project.Title_Ar, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
 
                                     </div>
@@ -55,7 +55,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Project.Title_En, new { @class = "form-label required" })
                                             <span asp-validation-for="Project.Title_En" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Project.Title_En, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Project.Title_En, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
 
                                     </div>
@@ -76,7 +76,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Project.Main_Field, new { @class = "form-label required" })
                                             <span asp-validation-for="Project.Main_Field" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Project.Main_Field, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Project.Main_Field, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
 
                                     </div>
@@ -85,7 +85,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Project.Sub_Field, new { @class = "form-label required" })
                                             <span asp-validation-for="Project.Sub_Field" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Project.Sub_Field, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Project.Sub_Field, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
 
                                     </div>
@@ -146,7 +146,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.investigator.Name, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Name, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.investigator.Name, null, new { @class = "form-control", required = "required", @readonly="true"})
                                             <span asp-validation-for="investigator.Name" class="text-danger"></span>
                                         </div>
 
@@ -171,7 +171,7 @@
 
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.investigator.Department, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Department, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.investigator.Department, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                             <span asp-validation-for="investigator.Department" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.investigator.College_Center, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.College_Center, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.investigator.College_Center, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                             <span asp-validation-for="investigator.College_Center" class="text-danger"></span>
                                         </div>
 
@@ -189,7 +189,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.investigator.Address_Of_Institiution, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Address_Of_Institiution, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.investigator.Address_Of_Institiution, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                             <span asp-validation-for="investigator.Address_Of_Institiution" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -230,7 +230,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Ex_Inv_Name, new { @class = "form-label required" })
                                             <span asp-validation-for="Ex_Inv_Name" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Ex_Inv_Name, null, new { @class = "form-control", required = "required" })
+                                        @Html.TextBoxFor(m => m.Ex_Inv_Name, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
 
 
@@ -255,7 +255,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Ext_Inv_Department, new { @class = "form-label required" })
                                             <span asp-validation-for="Ext_Inv_Department" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Ext_Inv_Department, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Ext_Inv_Department, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
                                     </div>
                                 </div>
@@ -264,7 +264,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Ext_inv_College_Center, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.Ext_inv_College_Center, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Ext_inv_College_Center, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                             <span asp-validation-for="Ext_inv_College_Center" class="text-danger"></span>
                                         </div>
 
@@ -272,7 +272,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Ext_Inv_Address_Of_Institiution, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.Ext_Inv_Address_Of_Institiution, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Ext_Inv_Address_Of_Institiution, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                             <span asp-validation-for="Ext_Inv_Address_Of_Institiution" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -324,7 +324,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Financial_Section.Wages_Salaries, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.Financial_Section.Wages_Salaries, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Financial_Section.Wages_Salaries, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                             <span asp-validation-for="Financial_Section.Wages_Salaries" class="text-danger"></span>
                                         </div>
 
@@ -334,7 +334,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Financial_Section.Equepment_And_Accessories, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.Financial_Section.Equepment_And_Accessories, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Financial_Section.Equepment_And_Accessories, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                             <span asp-validation-for="Financial_Section.Equepment_And_Accessories" class="text-danger"></span>
                                         </div>
 
@@ -344,7 +344,7 @@
 
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Financial_Section.consumable, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.Financial_Section.consumable, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Financial_Section.consumable, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                             <span asp-validation-for="Financial_Section.consumable" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -355,7 +355,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Financial_Section.Exchange_Visits, new { @class = "form-label required" })
                                             <span asp-validation-for="Financial_Section.Exchange_Visits" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Financial_Section.Exchange_Visits, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Financial_Section.Exchange_Visits, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
 
 
@@ -365,7 +365,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Financial_Section.Other_Expendtiure_items, new { @class = "form-label required" })
                                             <span asp-validation-for="Financial_Section.Other_Expendtiure_items" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Financial_Section.Other_Expendtiure_items, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Financial_Section.Other_Expendtiure_items, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
 
                                     </div>
@@ -375,7 +375,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, new { @class = "form-label required" })
                                             <span asp-validation-for="Financial_Section.External_Partner_Contract_include_Tax" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
                                     </div>
                                 </div>
@@ -385,7 +385,7 @@
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.Financial_Section.Total, new { @class = "form-label required" })
                                             <span asp-validation-for="Financial_Section.Total" class="text-danger"></span>
-                                            @Html.TextBoxFor(m => m.Financial_Section.Total, null, new { @class = "form-control", required = "required" })
+                                            @Html.TextBoxFor(m => m.Financial_Section.Total, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
                                     </div>
                                 </div>
