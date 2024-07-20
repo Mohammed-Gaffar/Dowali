@@ -71,7 +71,7 @@
                 <div class="col-md-3" style="align-items:start">
 
                     <div class="col-xs-6 col-sm-6 text-center" style="margin-top:10px">
-                        <a href="@Url.Action("Index","Home")" class="block r-shape">
+                        <a href="@Url.Action("Index","Home")" class="font-w700 h5 push-5-t">
                             <div class="block-content block-content-full" style="padding:0px">
                                 <div class="font-w700 h5 push-5-t">
                                     الصفحة الرئيسية
@@ -81,7 +81,7 @@
                     </div>
                    
                     <div class="col-xs-6 col-sm-6 text-center" style="margin-top:10px">
-                        <a href="#!" class="block r-shape">
+                        <a class="font-w700 h5 push-5-t" href="@Url.Action("Logout","Auth")">
                             <div class="block-content block-content-full" style="padding:0px">
                                 <div class="font-w700 h5 push-5-t">
                                     تسجيل الخروج
@@ -89,6 +89,7 @@
                             </div>
                         </a>
                     </div>
+
 
                 </div>
             </div>
@@ -108,6 +109,15 @@
                             <a asp-action="Index" asp-controller="Home" class="first-item">المشاريع</a>
                             <hr style="margin:0" />
                             <a asp-action="Create" asp-controller="Home" class="last-item">اضافة مشروع</a>
+                        </div>
+                    </div>
+
+                    <div class="dropdown">
+                        <button class="dropbtn">الموظفين</button>
+                        <div class="dropdown-content">
+                            <a asp-action="Index" asp-controller="Users" class="first-item">الموظفين</a>
+                            <hr style="margin:0" />
+                            <a asp-action="Create" asp-controller="USers" class="last-item">اضافة موظف</a>
                         </div>
                     </div>
 

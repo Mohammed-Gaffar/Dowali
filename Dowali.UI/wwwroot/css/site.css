@@ -39,6 +39,12 @@ body {
         background-color: goldenrod;
     }
 
+
+.block {
+    justify-content:center;
+    display:flex;
+    padding:2%
+}
 /**/
 /* Latest compiled and minified CSS included as External Resource*/
 
