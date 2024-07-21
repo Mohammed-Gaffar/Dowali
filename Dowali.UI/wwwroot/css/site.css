@@ -124,7 +124,7 @@ body {
     position: absolute;
     right: 0;
     height: 30%;
-    width: 200px;
+    width: 5%;
     background-color: #c59944;
     border-radius: 10px 0px 0px 10px;
     height: fit-content;
@@ -138,21 +138,24 @@ body {
     padding: 16px;
     font-size: 16px;
     border: none;
-    width:200px;
+    width:fit-content;
+    font-weight:700;
     
 }
 
 .dropdown {
     position: relative;
     display: inline-block;
+    padding-bottom: 10px;
 }
 
 .dropdown-content {
     display: none;
-    min-width: 160px;
-    margin-right: 23%;
+    min-width: 100px;
+    margin-right: 70%;
     z-index: 1;
-    width:90%
+    width:90%;
+    font-weight:800;
 }
 
     .dropdown-content a {
@@ -161,6 +164,7 @@ body {
         text-decoration: none;
         display: block;
         background-color: #0d6f77;
+        color: white
     }
 
 .dropdown-content a:hover {
