@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Services</title>
 
-
-
     <link rel="stylesheet" href="~/them/css/bootstrap_ar.min.css">
     <link rel="stylesheet" href="~/them/css/kfu_ar.css">
     <link rel="stylesheet" href="~/them/css/site_ar.css">
     <link rel="stylesheet" href="~/them/css/media_ar.css">
-
-    <!-- Favico -->
     
     <!-- Core Css Files -->
     <link rel="stylesheet" href="~/assets/css/bootstrap-icons.min.css" />
@@ -57,18 +53,14 @@
             </ul>
         </aside>
 
-
-
-
-
         <!-- Header -->
         <header id="header-navbar" class="content-mini content-mini-full">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
                     @* <a href="https://www.kfu.edu.sa/"><img src="@Url.Content("~/images/logo.png")" border="0" alt="" style="width: 165px"></a> *@
                 </div>
 
-                <div class="col-md-3" style="align-items:start">
+                <div class="col-md-4" style="align-items:start;display:flex;">
 
                     <div class="col-xs-6 col-sm-6 text-center" style="margin-top:10px">
                         <a href="@Url.Action("Index","Home")" class="font-w700 h5 push-5-t">
@@ -79,18 +71,40 @@
                             </div>
                         </a>
                     </div>
-                   
-                    <div class="col-xs-6 col-sm-6 text-center" style="margin-top:10px">
-                        <a class="font-w700 h5 push-5-t" href="@Url.Action("Logout","Auth")">
-                            <div class="block-content block-content-full" style="padding:0px">
-                                <div class="font-w700 h5 push-5-t">
-                                    تسجيل الخروج
+                   @if (User.Identity.IsAuthenticated)
+                   {
+                        <div class="col-xs-6 col-sm-6 text-center" style="margin-top:10px">
+                            <a class="font-w700 h5 push-5-t" href="#">
+                                <div class="block-content block-content-full" style="padding:0px">
+                                    <div class="font-w700 h5 push-5-t">
+                                        مرحبا @User.Identity.Name
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
 
-
+                        <div class="col-xs-6 col-sm-6 text-center" style="margin-top:10px">
+                            <a class="font-w700 h5 push-5-t" href="@Url.Action("Logout","Auth")">
+                                <div class="block-content block-content-full" style="padding:0px">
+                                    <div class="font-w700 h5 push-5-t">
+                                        تسجيل الخروج
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                   }
+                   else
+                   {
+                        <div class="col-xs-6 col-sm-6 text-center" style="margin-top:10px">
+                            <a class="font-w700 h5 push-5-t" href="@Url.Action("login","Auth")">
+                                <div class="block-content block-content-full" style="padding:0px">
+                                    <div class="font-w700 h5 push-5-t">
+                                        تسجيل الدخول
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                   }
                 </div>
             </div>
         </header>
@@ -111,17 +125,19 @@
                             <a asp-action="Create" asp-controller="Home" class="last-item">اضافة مشروع</a>
                         </div>
                     </div>
+                    @if (User.IsInRole("Super_Admin")||User.IsInRole("Admin"))
+                    {
 
-                    <div class="dropdown">
-                        <button class="dropbtn">الموظفين</button>
-                        <div class="dropdown-content">
-                            <a asp-action="Index" asp-controller="Users" class="first-item">الموظفين</a>
-                            <hr style="margin:0" />
-                            <a asp-action="Create" asp-controller="USers" class="last-item">اضافة موظف</a>
+                        <div class="dropdown">
+                            <button class="dropbtn">الموظفين</button>
+                            <div class="dropdown-content">
+                                <a asp-action="Index" asp-controller="Users" class="first-item">الموظفين</a>
+                                <hr style="margin:0" />
+                                <a asp-action="Create" asp-controller="USers" class="last-item">اضافة موظف</a>
+                            </div>
                         </div>
-                    </div>
 
-                  
+                    }                  
                 </ul>
             </aside>
 

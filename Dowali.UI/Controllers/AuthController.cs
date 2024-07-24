@@ -26,7 +26,7 @@ namespace Dowali.UI.Controllers
         [Authorize]
         public IActionResult Login()
         {
-            return RedirectToAction("Index", "Services");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
