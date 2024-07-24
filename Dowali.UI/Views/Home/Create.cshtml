@@ -100,23 +100,22 @@
                                     </div>
                                     <hr />
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         @Html.LabelFor(m => m.Project.Summary_Ar, new { @class = "form-label" })
                                         <br />
                                         <span asp-validation-for="Project.Summary_Ar" class="text-danger"></span>
                                         @Html.TextAreaFor(m => m.Project.Summary_Ar, new { @class = "form-control", style = "width:100%" })
+                                    <br>
 
                                     </div>
-
-                                    <div class="col-md-6">
+                                    <br>
+                                    <div class="col-md-12">
                                         @Html.LabelFor(m => m.Project.Summary_En, new { @class = "form-label" })
                                         <br />
                                         @Html.TextAreaFor(m => m.Project.Summary_En, new { @class = "form-control", style = "width:100%;" })
                                         <span asp-validation-for="Project.Summary_En" class="text-danger"></span>
 
                                     </div>
-
-
                                 </div>
 
                                 <br />
@@ -171,7 +170,7 @@
 
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.investigator.Department, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Department, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
+                                            @Html.TextBoxFor(m => m.investigator.Department, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase", @Readonly="true"})
                                             <span asp-validation-for="investigator.Department" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -181,7 +180,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.investigator.College_Center, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.College_Center, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
+                                        @Html.TextBoxFor(m => m.investigator.College_Center, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)", @autocomplete = "falase", @Readonly = "true" })
                                             <span asp-validation-for="investigator.College_Center" class="text-danger"></span>
                                         </div>
 
@@ -206,14 +205,14 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.investigator.Mobile_Number, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Mobile_Number, null, new { @class = "form-control", required = "required", type = "number" })
+                                        @Html.TextBoxFor(m => m.investigator.Mobile_Number, null, new { @class = "form-control", required = "required", type = "number", @Readonly = "true" })
                                             <span asp-validation-for="investigator.Mobile_Number" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             @Html.LabelFor(m => m.investigator.Email, new { @class = "form-label required" })
-                                            @Html.TextBoxFor(m => m.investigator.Email, null, new { @class = "form-control", required = "required", type = "email" })
+                                        @Html.TextBoxFor(m => m.investigator.Email, null, new { @class = "form-control", required = "required", type = "email", @Readonly = "true" })
                                             <span asp-validation-for="investigator.Email" class="text-danger"></span>
                                         </div>
                                     </div>
@@ -232,8 +231,6 @@
                                             <span asp-validation-for="Ex_Inv_Name" class="text-danger"></span>
                                         @Html.TextBoxFor(m => m.Ex_Inv_Name, null, new { @class = "form-control", required = "required", @onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" ,@autocomplete="falase"})
                                         </div>
-
-
                                     </div>
 
                                     <div class="col-md-4">
@@ -247,7 +244,6 @@
                                                 <option value="مساعد تدريس">مساعد تدريس</option>
                                             </select>
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-4">
@@ -310,8 +306,6 @@
                         @* ============================== End Step Two investggators information fields ====================================== *@
 
                         @* ==============================  Step tree Finantial information fields ====================================== *@
-
-
                         <div class="panel panel-primary setup-content" id="step-3">
                             <div class="panel-heading">
                                 <center><h3 class="panel-title"> ملخص البيانات المالية</h3></center>
@@ -394,7 +388,6 @@
                                 <button class="btn btn-success pull-right" type="submit">موافق</button>
                             </div>
                         </div>
-
                         @* ============================== End Step tree Finantial information fields ====================================== *@
 
                     }

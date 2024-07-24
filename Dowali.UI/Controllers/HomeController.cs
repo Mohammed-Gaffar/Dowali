@@ -1,4 +1,12 @@
-﻿using Core.Entities;
+﻿//////////////////////////////////////////////////
+//Author    : Mohammed Gaffer Aidaab
+//For       : King Faisual University
+//Under     : ISB integrated sulution business Company
+//App       : Dowali Application (())
+//Date      : July - 2024
+/////////////////////////////////////////////////////
+
+using Core.Entities;
 using Core.Interfaces;
 using Dowali.Core.Entities;
 using Dowali.Core.Interfaces;
@@ -31,18 +39,27 @@ public class HomeController : BaseController
         _invitgator = investgator;
     }
 
+   
     public async Task<IActionResult> Index()
     {
+        ProjectsDTO ProjectsData = new();
 
-        ProjectsDTO ProjectsData = new ProjectsDTO
+        if (User.IsInRole("Super_Admin") || User.IsInRole("Admin"))
         {
-            Projects = await _project.GetAllProjects(),
-            ProjectInvestigators = await _invitgator.GetAllInvestgators(),
-            Projectinancial_Section = await _financial.GetAllFinanctial(),
+            ProjectsData.Projects = await _project.GetAllProjects();
+            ProjectsData.ProjectInvestigators = await _invitgator.GetAllInvestgators();
+            ProjectsData.Projectinancial_Section = await _financial.GetAllFinanctial();
+        }
 
-        };
+        if (User.IsInRole("User"))
+        {
+            //ProjectsData.Projects = await _project.GetUserProjects();
+            //ProjectsData.ProjectInvestigators = await _invitgator.GetUserInvestgators();
+            //ProjectsData.Projectinancial_Section = await _financial.GetUserFinanctial();
+        }
 
         return View(ProjectsData);
+
     }
 
     public async Task<IActionResult> Create()
@@ -86,6 +103,7 @@ public class HomeController : BaseController
 
     }
 
+   
     public async Task<IActionResult> CreateProject(ProjectsDTO ProjectData)
     {
         User userdata = new();
@@ -113,7 +131,7 @@ public class HomeController : BaseController
 
                 ProjectData.Project.Create_At = DateTime.Now;
                 ProjectData.Project.Created_by = userdata.ID;
-
+                ProjectData.Project.satatus = null;    // project status on creation in null not checked 
             }
             else
             {
@@ -205,6 +223,33 @@ public class HomeController : BaseController
         return View("Create", ProjectData);
     }
 
+   
+
+    public async Task<IActionResult> Details(int ProjectId)
+    {
+        ProjectsDTO Information = new ProjectsDTO()
+        {
+            Project = await _project.GetProjectByID(ProjectId),
+            investigator = await _invitgator.GetInternalInvestgatorByProjectId(ProjectId),
+            Financial_Section = await _financial.GetFinantialByProjectID(ProjectId),
+        };
+        var Ex_Inv = await _invitgator.GetExternalInvestgatorByProjectId(ProjectId);
+            
+        Information.Ext_Inv_Email = Ex_Inv.Email;
+        Information.Ex_Inv_Name   = Ex_Inv.Name;
+        Information.Ext_Inv_Mobile_Number = Ex_Inv.Mobile_Number;
+        Information.Ext_Inv_Office_Phone = Ex_Inv.Office_Phone;
+        Information.Ext_Inv_Department = Ex_Inv.Department;
+        Information.Ext_Inv_Academic_Rank = Ex_Inv.Academic_Rank;
+        Information.Ext_Inv_Address_Of_Institiution = Ex_Inv.Address_Of_Institiution;
+        Information.Ext_inv_College_Center = Ex_Inv.College_Center;
+        
+        
+        return View(Information);
+    }
+
+
+
     [AllowAnonymous]
     public async Task<IActionResult> ShowFile(string FileName)
     {
@@ -213,6 +258,7 @@ public class HomeController : BaseController
         return File(file, "application/pdf", "Project_Information" + ".pdf");
     }
 
+    
     public async Task<string> SaveFile(IFormFile file)
     {
         try
@@ -226,6 +272,7 @@ public class HomeController : BaseController
         }
     }
 
+   
     public async Task<string> ViewFile(string FileName)
     {
         try

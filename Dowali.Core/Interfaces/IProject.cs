@@ -10,5 +10,7 @@ namespace Dowali.Core.Interfaces
         int GetProjectID(Project Project);
 
         public Task<IEnumerable<Project>> GetAllProjects();
+
+        public Task<Project> GetProjectByID(int ProjectId);
     }
 }

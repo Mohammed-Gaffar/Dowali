@@ -5,65 +5,64 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="block">
-    <div class="col-md-10" style="overflow-y:scroll;height:300px">
-        <div class="card">
+    <div class="col-md-6" >
+        <div class="block">
+        <div class="card" style="overflow-y:scroll;height:300px">
             <div class=" card-header">
-
             </div>
             <div class="card-body">
                 <table class="table table-striped table-hover">
-                        <thead>
-                            <th> رقم المشروع </th>
-                            <th>عوان المشروع </th>
-                            <th>الباحث الداخلي</th>
-                            <th>الباحث الخارجي</th>
-                            <th>اجمالي التكلفة</th>
-                            <th> ملف المشروع</th>
-                        </thead>
-                        <tbody>
-                            @foreach (var project in Model.Projects)
-                            {
-                                <tr>
-                                    <td>@project.ID</td>
-                                    <td>@project.Title_Ar</td>
+                    <thead>
+                    <th> رقم المشروع </th>
+                    <th>عوان المشروع </th>
+                    <th>الباحث الداخلي</th>
+                    <th>الباحث الخارجي</th>
+                    <th>اجمالي التكلفة</th>
+                    <th> ملف المشروع</th>
+                    </thead>
+                    <tbody>
+                        @foreach (var project in Model.Projects)
+                        {
+                            <tr>
+                                <td>@project.ID</td>
+                                <td>@project.Title_Ar</td>
 
-                                    @foreach (var investgator in Model.ProjectInvestigators)
+                                @foreach (var investgator in Model.ProjectInvestigators)
+                                {
+                                    if (investgator.Project_Id == project.ID && investgator.Inv_Type == 0)
                                     {
-                                        if (investgator.Project_Id == project.ID && investgator.Inv_Type == 0)
-                                        {
-                                            <td>@investgator.Name</td>
-                                        }
-
-                                        if (investgator.Project_Id == project.ID && investgator.Inv_Type == 1)
-                                        {
-                                            <td>@investgator.Name</td>
-                                        }
+                                        <td>@investgator.Name</td>
                                     }
 
-                                    @foreach (var financtial in Model.Projectinancial_Section)
+                                    if (investgator.Project_Id == project.ID && investgator.Inv_Type == 1)
                                     {
-                                        if (financtial.Project_Id == project.ID)
-                                        {
-                                            <td>@financtial.Total</td>
-                                        }
+                                        <td>@investgator.Name</td>
                                     }
+                                }
 
-                                    <td>
-                                    <a asp-action="ShowFile" asp-controller="Home" asp-route-FileName="@project.File_Path"><button class="btn btn-info">تحميل</button></a>
+                                @foreach (var financtial in Model.Projectinancial_Section)
+                                {
+                                    if (financtial.Project_Id == project.ID)
+                                    {
+                                        <td>@financtial.Total</td>
+                                    }
+                                }
+
+                                <td>
+                                    <a asp-action="Details" asp-controller="Home" asp-route-ProjectId="@project.ID"><button class="btn btn-info">التفاصيل</button></a>
                                 </td>
-                                  
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
             <div class="card-footer">
-
             </div>
         </div>
     </div>
-</div>
+      
+    </div>
 
 <!-- MultiStep Form -->
 <div class="row" style="justify-content:center;display:flex">

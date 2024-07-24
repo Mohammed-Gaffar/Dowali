@@ -12,6 +12,7 @@ using Core.Entities;
 using Dowali.Core.Entities;
 using Dowali.Core.Interfaces;
 using Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dowali.Infrastructure.Repositories
 {
@@ -37,6 +38,20 @@ namespace Dowali.Infrastructure.Repositories
             IEnumerable<Investigator> investigators = _context.Investigators;
 
             return investigators;
+        }
+
+        public async Task<Investigator> GetExternalInvestgatorByProjectId(int ProjectID)
+        {
+            var Ex_investgator = await _context.Investigators.FirstOrDefaultAsync(x => x.Project_Id == ProjectID && x.Inv_Type == 1 );
+
+            return Ex_investgator;
+        }
+
+        public async Task<Investigator> GetInternalInvestgatorByProjectId(int ProjectID)
+        {
+            var investgator = await _context.Investigators.FirstOrDefaultAsync(x => x.Project_Id == ProjectID && x.Inv_Type == 0 );
+
+            return investgator;
         }
     }
 }

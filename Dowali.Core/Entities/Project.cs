@@ -50,6 +50,10 @@ namespace Dowali.Core.Entities
         [Display(Name = "المجال الفرعي")]
         public string Sub_Field { get; set; }
 
+
+        [Display(Name = "حالة المشروع")]
+        public int? satatus { get; set; }
+
         [AllowNull]
         [Display(Name = "ملف المشروع")]
         public string? File_Path { get; set; }
