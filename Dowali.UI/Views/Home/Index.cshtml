@@ -5,64 +5,56 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="col-md-6" >
-        <div class="block">
-        <div class="card" style="overflow-y:scroll;height:300px">
-            <div class=" card-header">
-            </div>
-            <div class="card-body">
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <th> رقم المشروع </th>
-                    <th>عوان المشروع </th>
-                    <th>الباحث الداخلي</th>
-                    <th>الباحث الخارجي</th>
-                    <th>اجمالي التكلفة</th>
-                    <th> ملف المشروع</th>
-                    </thead>
-                    <tbody>
-                        @foreach (var project in Model.Projects)
-                        {
-                            <tr>
-                                <td>@project.ID</td>
-                                <td>@project.Title_Ar</td>
-
-                                @foreach (var investgator in Model.ProjectInvestigators)
+       <div class="row">
+           <div class="col-md-6">
+                  <div class="block">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                <th>عوان المشروع </th>
+                <th>الباحث الداخلي</th>
+                <th>الباحث الخارجي</th>
+                <th>اجمالي التكلفة</th>
+                <th> ملف المشروع</th>
+                </thead>
+                <tbody>
+                    @foreach (var project in Model.Projects)
+                    {
+                        <tr>
+                            <td>@project.Title_Ar</td>
+                            @foreach (var investgator in Model.ProjectInvestigators)
+                            {
+                                if (investgator.Project_Id == project.ID && investgator.Inv_Type == 0)
                                 {
-                                    if (investgator.Project_Id == project.ID && investgator.Inv_Type == 0)
-                                    {
-                                        <td>@investgator.Name</td>
-                                    }
-
-                                    if (investgator.Project_Id == project.ID && investgator.Inv_Type == 1)
-                                    {
-                                        <td>@investgator.Name</td>
-                                    }
+                                    <td>@investgator.Name</td>
                                 }
 
-                                @foreach (var financtial in Model.Projectinancial_Section)
+                                if (investgator.Project_Id == project.ID && investgator.Inv_Type == 1)
                                 {
-                                    if (financtial.Project_Id == project.ID)
-                                    {
-                                        <td>@financtial.Total</td>
-                                    }
+                                    <td>@investgator.Name</td>
                                 }
+                            }
 
-                                <td>
-                                    <a asp-action="Details" asp-controller="Home" asp-route-ProjectId="@project.ID"><button class="btn btn-info">التفاصيل</button></a>
-                                </td>
+                            @foreach (var financtial in Model.Projectinancial_Section)
+                            {
+                                if (financtial.Project_Id == project.ID)
+                                {
+                                    <td>@financtial.Total</td>
+                                }
+                            }
 
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="card-footer">
-            </div>
+                            <td>
+                                <a asp-action="Details" asp-controller="Home" asp-route-ProjectId="@project.ID"><button class="btn btn-info">التفاصيل</button></a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
         </div>
-    </div>
-      
-    </div>
+               </div>
+           </div>
+
 
 <!-- MultiStep Form -->
 <div class="row" style="justify-content:center;display:flex">
@@ -76,11 +68,13 @@
                     <div class="col-md-6">
                         <a asp-action="Create" asp-controller="Home" class="btn btn-secondary">ابدأ الخدمة</a>
                     </div>
-               </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+       </div>
+
 
 @section Scripts {
     <partial name="_NotificationPartial" />

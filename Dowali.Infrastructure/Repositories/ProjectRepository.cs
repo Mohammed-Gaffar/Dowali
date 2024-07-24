@@ -52,6 +52,13 @@ namespace Dowali.Infrastructure.Repositories
             return Db_Project.ID;
         }
 
+        public async Task<IEnumerable<Project>> GetUserProjects(string P_User)
+        {
+            IEnumerable<Project> projects = _dbcon.Projects.Where(x => x.owner == P_User);
+
+            return projects;
+        }
+
 
         //public Task<IEnumerable<Project>> GetProjectsWithData()
         //{

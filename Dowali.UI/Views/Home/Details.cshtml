@@ -325,18 +325,22 @@
             </div>
             <div class="panel-footer">
                 <div style="text-align:end">
-                <a asp-action="ShowFile" asp-controller="Home" asp-route-FileName="@Model.Project.File_Path" >
-                   download
-                </a>
+                    <a asp-action="ShowFile" asp-controller="Home" asp-route-FileName="@Model.Project.File_Path" class="btn btn-info btn-blue" >
+                       download
+                    </a>
 
-                <a asp-action="DownloadFile" asp-controller="Home" asp-route-filename="">
+                    <a asp-action="DownloadFile" asp-controller="Home" asp-route-filename="">
                    
-                </a>
+                    </a>
 
-                <a asp-action="DownloadFile" asp-controller="Home" asp-route-filename="" class="btn btn-blue">
+                    <a asp-action="DownloadFile" asp-controller="Home" asp-route-filename="" class="btn btn-blue">
                     
-                </a>
+                    </a>
 
+                    <button class="btn btn-warning">download file warning </button>
+                    <button class="btn btn-primary">download file primary</button>
+                <button class="btn btn-secondary btn-blue">download f33333ile</button>
+                    <button class="btn btn-danger">download file</button>
                 </div>
             </div>
         </div>

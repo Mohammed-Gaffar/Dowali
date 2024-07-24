@@ -262,7 +262,7 @@ a.block {
 .btn {
     font-weight: 500;
     color: #fff;
-    background-color: #0b6f77;
+    /*background-color: #0b6f77;*/
     border: none;
     padding: 8px 20px;
     font-size: 14px;

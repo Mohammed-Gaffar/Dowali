@@ -51,7 +51,7 @@ public class HomeController : BaseController
             ProjectsData.Projectinancial_Section = await _financial.GetAllFinanctial();
         }
 
-        //ProjectsData.Projects = await _project.GetUserProjects();
+        ProjectsData.Projects = await _project.GetUserProjects(User.Identity.Name);
         //ProjectsData.ProjectInvestigators = await _invitgator.GetUserInvestgators();
         //ProjectsData.Projectinancial_Section = await _financial.GetUserFinanctial();
 
