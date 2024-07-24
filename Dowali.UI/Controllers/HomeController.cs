@@ -130,6 +130,7 @@ public class HomeController : BaseController
                 ProjectData.Project.Create_At = DateTime.Now;
                 ProjectData.Project.Created_by = userdata.ID;
                 ProjectData.Project.satatus = null;    // project status on creation in null not checked 
+                ProjectData.Project.owner = userdata.UserName;
             }
             else
             {

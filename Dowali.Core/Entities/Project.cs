@@ -58,7 +58,7 @@ namespace Dowali.Core.Entities
         public int? satatus { get; set; }                   //project status {null === no action taken by the manager , 1 approved project , 0 not appproved project 
 
         [Display(Name = "صاحب المشروع")]
-        public string owner { get; set; }                  //unique identifer for the user create project 
+        public string? owner { get; set; }                  //unique identifer for the user create project 
 
         [AllowNull]
         [Display(Name = "ملف المشروع")]
