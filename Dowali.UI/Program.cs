@@ -103,7 +103,7 @@ using (var scope = app.Services.CreateScope())
 
 
     var user = new User
-    { UserName = "mgahmed", Role = (Core.Enums.Roles)0, Create_At = DateTime.Now, Created_by = 1 };
+    { UserName = "mgahmed", Role = (Core.Enums.Roles)0, Create_At = DateTime.Now, Created_by = new Guid() };
 
     await userRepository.Create(user);
 

@@ -17,8 +17,8 @@ namespace Dowali.Core.Interfaces
 
         public Task<IEnumerable<Investigator>> GetAllInvestgators();
 
-        public Task<Investigator> GetInternalInvestgatorByProjectId(int ProjectID);
+        public Task<Investigator> GetInternalInvestgatorByProjectId(Guid ProjectID);
 
-        public Task<Investigator> GetExternalInvestgatorByProjectId(int ProjectID);
+        public Task<Investigator> GetExternalInvestgatorByProjectId(Guid ProjectID);
     }
 }

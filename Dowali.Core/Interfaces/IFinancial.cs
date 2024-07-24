@@ -9,7 +9,7 @@ namespace Dowali.Core.Interfaces
 
         public Task<IEnumerable<Financial_Section>> GetAllFinanctial();
 
-        public Task<Financial_Section> GetFinantialByProjectID(int ProjectId);
+        public Task<Financial_Section> GetFinantialByProjectID(Guid ProjectId);
 
     }
 }

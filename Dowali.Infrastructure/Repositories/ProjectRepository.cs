@@ -12,7 +12,6 @@ using Core.Entities;
 using Dowali.Core.Entities;
 using Dowali.Core.Interfaces;
 using Infrastructure.Context;
-using System.Linq;
 
 namespace Dowali.Infrastructure.Repositories
 {
@@ -40,13 +39,13 @@ namespace Dowali.Infrastructure.Repositories
             return projects;
         }
 
-        public async Task<Project> GetProjectByID(int ProjectId)
+        public async Task<Project> GetProjectByID(Guid ProjectId)
         {
             Project project = await _dbcon.Projects.FindAsync(ProjectId);
-            return project; 
+            return project;
         }
 
-        public int GetProjectID(Project Project)
+        public Guid GetProjectID(Project Project)
         {
 
             var Db_Project = _dbcon.Projects.FirstOrDefault(x => x.Main_Field == Project.Main_Field);

@@ -40,16 +40,16 @@ namespace Dowali.Infrastructure.Repositories
             return investigators;
         }
 
-        public async Task<Investigator> GetExternalInvestgatorByProjectId(int ProjectID)
+        public async Task<Investigator> GetExternalInvestgatorByProjectId(Guid ProjectID)
         {
-            var Ex_investgator = await _context.Investigators.FirstOrDefaultAsync(x => x.Project_Id == ProjectID && x.Inv_Type == 1 );
+            var Ex_investgator = await _context.Investigators.FirstOrDefaultAsync(x => x.Project_Id == ProjectID && x.Inv_Type == 1);
 
             return Ex_investgator;
         }
 
-        public async Task<Investigator> GetInternalInvestgatorByProjectId(int ProjectID)
+        public async Task<Investigator> GetInternalInvestgatorByProjectId(Guid ProjectID)
         {
-            var investgator = await _context.Investigators.FirstOrDefaultAsync(x => x.Project_Id == ProjectID && x.Inv_Type == 0 );
+            var investgator = await _context.Investigators.FirstOrDefaultAsync(x => x.Project_Id == ProjectID && x.Inv_Type == 0);
 
             return investgator;
         }

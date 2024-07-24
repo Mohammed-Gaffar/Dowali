@@ -24,17 +24,15 @@ namespace Dowali.Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.User", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Create_At")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Created_by")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Created_by")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
@@ -42,8 +40,8 @@ namespace Dowali.Infrastructure.Migrations
                     b.Property<DateTime?>("Update_At")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Updated_by")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("Updated_by")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -56,17 +54,15 @@ namespace Dowali.Infrastructure.Migrations
 
             modelBuilder.Entity("Dowali.Core.Entities.Financial_Section", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Create_At")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Created_by")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Created_by")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("Equepment_And_Accessories")
                         .HasColumnType("float");
@@ -80,8 +76,8 @@ namespace Dowali.Infrastructure.Migrations
                     b.Property<double>("Other_Expendtiure_items")
                         .HasColumnType("float");
 
-                    b.Property<int>("Project_Id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Project_Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("Total")
                         .HasColumnType("float");
@@ -89,8 +85,8 @@ namespace Dowali.Infrastructure.Migrations
                     b.Property<DateTime?>("Update_At")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Updated_by")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("Updated_by")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("Wages_Salaries")
                         .HasColumnType("float");
@@ -105,11 +101,9 @@ namespace Dowali.Infrastructure.Migrations
 
             modelBuilder.Entity("Dowali.Core.Entities.Investigator", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Academic_Rank")
                         .HasColumnType("int");
@@ -127,8 +121,8 @@ namespace Dowali.Infrastructure.Migrations
                     b.Property<DateTime?>("Create_At")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Created_by")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Created_by")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Department")
                         .IsRequired()
@@ -153,14 +147,14 @@ namespace Dowali.Infrastructure.Migrations
                     b.Property<int>("Office_Phone")
                         .HasColumnType("int");
 
-                    b.Property<int>("Project_Id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Project_Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Update_At")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Updated_by")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("Updated_by")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ID");
 
@@ -169,17 +163,15 @@ namespace Dowali.Infrastructure.Migrations
 
             modelBuilder.Entity("Dowali.Core.Entities.Project", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Create_At")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Created_by")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Created_by")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Douration")
                         .HasColumnType("int");
@@ -220,13 +212,20 @@ namespace Dowali.Infrastructure.Migrations
                     b.Property<DateTime?>("Update_At")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Updated_by")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("Updated_by")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("owner")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("satatus")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("owner")
+                        .IsUnique();
 
                     b.ToTable("Projects");
                 });

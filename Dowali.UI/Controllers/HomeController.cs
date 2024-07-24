@@ -39,7 +39,7 @@ public class HomeController : BaseController
         _invitgator = investgator;
     }
 
-   
+
     public async Task<IActionResult> Index()
     {
         ProjectsDTO ProjectsData = new();
@@ -51,12 +51,10 @@ public class HomeController : BaseController
             ProjectsData.Projectinancial_Section = await _financial.GetAllFinanctial();
         }
 
-        if (User.IsInRole("User"))
-        {
-            //ProjectsData.Projects = await _project.GetUserProjects();
-            //ProjectsData.ProjectInvestigators = await _invitgator.GetUserInvestgators();
-            //ProjectsData.Projectinancial_Section = await _financial.GetUserFinanctial();
-        }
+        //ProjectsData.Projects = await _project.GetUserProjects();
+        //ProjectsData.ProjectInvestigators = await _invitgator.GetUserInvestgators();
+        //ProjectsData.Projectinancial_Section = await _financial.GetUserFinanctial();
+
 
         return View(ProjectsData);
 
@@ -103,7 +101,7 @@ public class HomeController : BaseController
 
     }
 
-   
+
     public async Task<IActionResult> CreateProject(ProjectsDTO ProjectData)
     {
         User userdata = new();
@@ -147,7 +145,7 @@ public class HomeController : BaseController
 
             if (res.IsSuccess == true)
             {
-                int Project_ID = _project.GetProjectID(project);
+                Guid Project_ID = _project.GetProjectID(project);
 
                 ProjectData.investigator.Project_Id = Project_ID;
                 ProjectData.investigator.Inv_Type = 0;                  //Internal Investgator 
@@ -223,9 +221,9 @@ public class HomeController : BaseController
         return View("Create", ProjectData);
     }
 
-   
 
-    public async Task<IActionResult> Details(int ProjectId)
+
+    public async Task<IActionResult> Details(Guid ProjectId)
     {
         ProjectsDTO Information = new ProjectsDTO()
         {
@@ -234,17 +232,17 @@ public class HomeController : BaseController
             Financial_Section = await _financial.GetFinantialByProjectID(ProjectId),
         };
         var Ex_Inv = await _invitgator.GetExternalInvestgatorByProjectId(ProjectId);
-            
+
         Information.Ext_Inv_Email = Ex_Inv.Email;
-        Information.Ex_Inv_Name   = Ex_Inv.Name;
+        Information.Ex_Inv_Name = Ex_Inv.Name;
         Information.Ext_Inv_Mobile_Number = Ex_Inv.Mobile_Number;
         Information.Ext_Inv_Office_Phone = Ex_Inv.Office_Phone;
         Information.Ext_Inv_Department = Ex_Inv.Department;
         Information.Ext_Inv_Academic_Rank = Ex_Inv.Academic_Rank;
         Information.Ext_Inv_Address_Of_Institiution = Ex_Inv.Address_Of_Institiution;
         Information.Ext_inv_College_Center = Ex_Inv.College_Center;
-        
-        
+
+
         return View(Information);
     }
 
@@ -258,7 +256,7 @@ public class HomeController : BaseController
         return File(file, "application/pdf", "Project_Information" + ".pdf");
     }
 
-    
+
     public async Task<string> SaveFile(IFormFile file)
     {
         try
@@ -272,7 +270,7 @@ public class HomeController : BaseController
         }
     }
 
-   
+
     public async Task<string> ViewFile(string FileName)
     {
         try

@@ -12,7 +12,6 @@ using Dowali.Core.Entities;
 using Dowali.Core.Interfaces;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Dowali.Infrastructure.Repositories
 {
@@ -48,7 +47,7 @@ namespace Dowali.Infrastructure.Repositories
             return financial_Sections;
         }
 
-        public async Task<Financial_Section> GetFinantialByProjectID(int ProjectId)
+        public async Task<Financial_Section> GetFinantialByProjectID(Guid ProjectId)
         {
             Financial_Section financial = await _context.Financial_Sections.FirstOrDefaultAsync(x => x.Project_Id == ProjectId);
 

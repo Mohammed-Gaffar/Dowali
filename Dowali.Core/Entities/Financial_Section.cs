@@ -14,7 +14,7 @@ namespace Dowali.Core.Entities
     public class Financial_Section : BaseEntity
     {
         [Display(Name = "رقم المشروع")]
-        public int Project_Id { get; set; }
+        public Guid Project_Id { get; set; }
 
         [Display(Name = "الروتب الأجور")]
         [Required(ErrorMessage = "بيانات الرواتب والاجوز الزامية")]

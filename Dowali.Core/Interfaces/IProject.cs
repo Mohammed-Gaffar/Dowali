@@ -7,10 +7,10 @@ namespace Dowali.Core.Interfaces
     {
         Task<BaseResponse> CreateProject(Project Project);
 
-        int GetProjectID(Project Project);
+        Guid GetProjectID(Project Project);
 
         public Task<IEnumerable<Project>> GetAllProjects();
 
-        public Task<Project> GetProjectByID(int ProjectId);
+        public Task<Project> GetProjectByID(Guid ProjectId);
     }
 }

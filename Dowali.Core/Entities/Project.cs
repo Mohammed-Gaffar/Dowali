@@ -8,12 +8,15 @@
 
 using Core.Entities.Base;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Dowali.Core.Entities
 {
+    [Index(nameof(Project.owner), IsUnique = true)]
+
     public class Project : BaseEntity
     {
         [Required(ErrorMessage = "اسم المشروع باللغة العربية الزامي")]
@@ -52,7 +55,10 @@ namespace Dowali.Core.Entities
 
 
         [Display(Name = "حالة المشروع")]
-        public int? satatus { get; set; }
+        public int? satatus { get; set; }                   //project status {null === no action taken by the manager , 1 approved project , 0 not appproved project 
+
+        [Display(Name = "صاحب المشروع")]
+        public string owner { get; set; }                  //unique identifer for the user create project 
 
         [AllowNull]
         [Display(Name = "ملف المشروع")]
