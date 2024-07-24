@@ -45,5 +45,21 @@ namespace Dowali.Infrastructure.Repositories
             var Db_Project = _dbcon.Projects.FirstOrDefault(x => x.Main_Field == Project.Main_Field);
             return Db_Project.ID;
         }
+
+
+        //public Task<IEnumerable<Project>> GetProjectsWithData()
+        //{
+        //IEnumerable<ProjectsDTO> result = from project in _dbcon.Projects
+        //             join investgators in _dbcon.Investigators on project.ID equals investgators.Project_Id
+        //             join Financtial in _dbcon.Financial_Sections on project.ID equals Financtial.Project_Id
+        //             select new
+        //             {
+        //                 project,
+        //                 investgators,
+        //                 Financtial
+        //             };
+
+        // return result.ToList();
+        //}
     }
 }

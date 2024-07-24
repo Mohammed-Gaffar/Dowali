@@ -44,7 +44,7 @@ namespace Dowali.UI.Helpers
 
                 var PostedData = new UploadFileModel()
                 {
-                    ApplicationName = "ServicesCatalog",
+                    ApplicationName = "Dowali",
                     ContentLength = Convert.ToInt32(file.Length),
                     ContentType = file.ContentType,
                     FileName = string.Format("{0}{1}", Guid.NewGuid().ToString(), Path.GetExtension(file.FileName).ToLower()),
@@ -67,7 +67,7 @@ namespace Dowali.UI.Helpers
             Client = new FileClient();
             return await Client.DownloadBytesAsync(new FileModel()
             {
-                ApplicationName = "ServicesCatalog",
+                ApplicationName = "Dowali",
                 FileName = FileName
             });
         }
@@ -77,7 +77,7 @@ namespace Dowali.UI.Helpers
             Client = new FileClient();
             return await Client.ViewAsync(new FileModel()
             {
-                ApplicationName = "ServicesCatalog",
+                ApplicationName = "Dowali",
                 FileName = FileName
             });
         }

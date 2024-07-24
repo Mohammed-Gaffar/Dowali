@@ -6,7 +6,7 @@
 }
 
 <div class="block">
-    <div class="col-md-10">
+    <div class="col-md-10" style="overflow-y:scroll;height:300px">
         <div class="card">
             <div class=" card-header">
 
@@ -19,6 +19,7 @@
                             <th>الباحث الداخلي</th>
                             <th>الباحث الخارجي</th>
                             <th>اجمالي التكلفة</th>
+                            <th> ملف المشروع</th>
                         </thead>
                         <tbody>
                             @foreach (var project in Model.Projects)
@@ -47,6 +48,11 @@
                                             <td>@financtial.Total</td>
                                         }
                                     }
+
+                                    <td>
+                                    <a asp-action="ShowFile" asp-controller="Home" asp-route-FileName="@project.File_Path"><button class="btn btn-info">تحميل</button></a>
+                                </td>
+                                  
                                 </tr>
                             }
                         </tbody>
