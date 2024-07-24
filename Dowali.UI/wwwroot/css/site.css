@@ -141,7 +141,9 @@ html {
     background-color: #c59944;
     border-radius: 10px 0px 0px 10px;
     height: fit-content;
-    margin-top: 18%
+    margin-top: 18% ;
+    position: fixed;
+    margin-right: 49px;
 }
 
 /*===========================DropDown items=======================*/

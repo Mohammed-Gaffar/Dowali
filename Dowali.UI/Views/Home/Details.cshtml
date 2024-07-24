@@ -255,10 +255,13 @@
 
 
                 <div class="row">
-                    <table class="table table-active">
-                        <thead>
-                            <th>البند</th>
-                            <th>القيمة</th>
+                   <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead style="background-color:gray;color:white">
+                            <tr>
+                                <th>البند</th>
+                                <th style="width:20%">القيمة</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <tr>
@@ -269,42 +272,59 @@
                                     @Html.TextBoxFor(m => m.Financial_Section.Wages_Salaries, null, new { @class = "form-control", @readonly = "true" })
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(m => m.Financial_Section.Equepment_And_Accessories, new { @class = "form-label required" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Financial_Section.Equepment_And_Accessories, null, new { @class = "form-control", @readonly = "true" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(m => m.Financial_Section.consumable, new { @class = "form-label required" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Financial_Section.consumable, null, new { @class = "form-control", @readonly = "true" })
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(m => m.Financial_Section.Exchange_Visits, new { @class = "form-label required" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Financial_Section.Exchange_Visits, null, new { @class = "form-control", @readonly = "true" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(m => m.Financial_Section.Other_Expendtiure_items, new { @class = "form-label required" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Financial_Section.Other_Expendtiure_items, null, new { @class = "form-control", @readonly = "true" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, new { @class = "form-label required" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, null, new { @class = "form-control", @readonly = "true" })
+                                </td>
+                            </tr>
+                            <tr style="background-color:#d7d7d7">
+                                <td>
+                                    @Html.LabelFor(m => m.Financial_Section.Total, new { @class = "form-label required" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(m => m.Financial_Section.Total, null, new { @class = "form-control", @readonly = "true" })
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 
-                    <div class="col-md-10">
-                        <br />
-                        @Html.LabelFor(m => m.Financial_Section.Wages_Salaries, new { @class = "form-label required" })
-                        <hr />
-                        @Html.LabelFor(m => m.Financial_Section.Equepment_And_Accessories, new { @class = "form-label required" })
-                        <hr />
-                        @Html.LabelFor(m => m.Financial_Section.consumable, new { @class = "form-label required" })
-                        <hr />
-                        @Html.LabelFor(m => m.Financial_Section.Exchange_Visits, new { @class = "form-label required" })
-                        <hr />
-                        @Html.LabelFor(m => m.Financial_Section.Other_Expendtiure_items, new { @class = "form-label required" })
-                        <hr />
-                        @Html.LabelFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, new { @class = "form-label required" })
-                        <hr />
-                        @Html.LabelFor(m => m.Financial_Section.Total, new { @class = "form-label required" })
-
-                    </div>
-
-                    <div class="col-md-2">
-                        <br />
-                        <hr />
-                        @Html.TextBoxFor(m => m.Financial_Section.Equepment_And_Accessories, null, new { @class = "form-control", @readonly = "true" })
-                        <hr />
-                        @Html.TextBoxFor(m => m.Financial_Section.consumable, null, new { @class = "form-control", @readonly = "true" })
-                        <hr />
-                        @Html.TextBoxFor(m => m.Financial_Section.Exchange_Visits, null, new { @class = "form-control", @readonly = "true" })
-                        <hr />
-                        @Html.TextBoxFor(m => m.Financial_Section.Other_Expendtiure_items, null, new { @class = "form-control", @readonly = "true" })
-                        <hr />
-                        @Html.TextBoxFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, null, new { @class = "form-control", @readonly = "true" })
-                        <hr />
-                        @Html.TextBoxFor(m => m.Financial_Section.Total, null, new { @class = "form-control", @readonly = "true" })
-                    </div>
+                   </div>
                 </div>
 
                 @* ============================== End Finantial information fields ====================================== *@
