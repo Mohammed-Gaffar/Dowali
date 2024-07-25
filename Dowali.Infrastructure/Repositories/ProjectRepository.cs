@@ -59,6 +59,27 @@ namespace Dowali.Infrastructure.Repositories
             return projects;
         }
 
+        public async Task<BaseResponse> projectConfirmation(Guid projectID)
+        {
+            var db_project = _dbcon.Projects.Find(projectID);
+
+            if (db_project != null)
+            {
+                db_project.satatus = 1;
+
+                var res = _dbcon.Projects.Update(db_project);
+                await _dbcon.SaveChangesAsync();
+
+                return new BaseResponse { IsSuccess = true };
+
+            }
+            else
+            {
+                return new BaseResponse { IsSuccess = false };
+            }
+
+        }
+
 
         //public Task<IEnumerable<Project>> GetProjectsWithData()
         //{

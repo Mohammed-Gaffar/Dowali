@@ -19,28 +19,28 @@ namespace Dowali.Core.Entities
 
     public class Project : BaseEntity
     {
-        [Required(ErrorMessage = "اسم المشروع باللغة العربية الزامي")]
+        [Required(ErrorMessage = "اسم البحث باللغة العربية الزامي")]
         [MaxLength(255)]
-        [Display(Name = "عنوان المشروع باللغة العربية")]
+        [Display(Name = "عنوان البحث باللغة العربية")]
         public string Title_Ar { get; set; }
 
-        [Required(ErrorMessage = "اسم الشروع باللغة الانجليزية إلزامي")]
+        [Required(ErrorMessage = "اسم البحث باللغة الانجليزية إلزامي")]
         [MaxLength(255)]
-        [Display(Name = "عنوان المشروع باللغة الإنجليزية")]
+        [Display(Name = "عنوان البحث باللغة الإنجليزية")]
         public string Title_En { get; set; }
 
-        [Required(ErrorMessage = "مدة المشروع")]
-        [Display(Name = "مدة المشروع")]
+        [Required(ErrorMessage = "مدة البحث")]
+        [Display(Name = "مدة البحث")]
         public int Douration { get; set; }
 
-        [Required(ErrorMessage = "ملخص المشروع الزامي")]
+        [Required(ErrorMessage = "ملخص البحث الزامي")]
         [MaxLength(255)]
-        [Display(Name = "ملخص المشروع باللغة العربية")]
+        [Display(Name = "ملخص المقترح البحثي  باللغة العربية")]
         public string Summary_Ar { get; set; }
 
-        [Required(ErrorMessage = "ملخص المشروع باللغة الإنجليزية")]
+        [Required(ErrorMessage = "ملخص المقترح البحثي باللغة الإنجليزية")]
         [MaxLength(255)]
-        [Display(Name = "ملخص المشروع باللغة الإنجليزية")]
+        [Display(Name = "ملخص المقترح البحثي  باللغة الإنجليزية")]
         public string Summary_En { get; set; }
 
         [Required(ErrorMessage = "المجال الرئيسي الزامي")]
@@ -54,19 +54,19 @@ namespace Dowali.Core.Entities
         public string Sub_Field { get; set; }
 
 
-        [Display(Name = "حالة المشروع")]
+        [Display(Name = "حالة البحث")]
         public int? satatus { get; set; }                   //project status {null === no action taken by the manager , 1 approved project , 0 not appproved project 
 
-        [Display(Name = "صاحب المشروع")]
+        [Display(Name = "صاحب البحث")]
         public string? owner { get; set; }                  //unique identifer for the user create project 
 
         [AllowNull]
-        [Display(Name = "ملف المشروع")]
+        [Display(Name = "ملف البحث")]
         public string? File_Path { get; set; }
 
 
         [NotMapped]
-        [Display(Name = "ملف المشروع")]
+        [Display(Name = "ملف البحث")]
         public IFormFile? File { get; set; }
     }
 }

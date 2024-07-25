@@ -9,7 +9,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <br />
-                <center> <h2 class="panel-title">بيانات المشروع</h2> </center>
+                <center> <h2 class="panel-title">بيانات البحث</h2> </center>
                 <br />
             </div>
             <br />
@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Project.Title_Ar, new { @class = "form-label required" })
+                            @Html.LabelFor(m => m.Project.Title_Ar, new { @class = "form-label " })
                             @Html.TextBoxFor(m => m.Project.Title_Ar, null, new { @class = "form-control",@readonly="true"})
                         </div>
 
@@ -27,7 +27,7 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Project.Title_En, new { @class = "form-label required" })
+                            @Html.LabelFor(m => m.Project.Title_En, new { @class = "form-label " })
                             @Html.TextBoxFor(m => m.Project.Title_En, null, new { @class = "form-control",@readonly="true"})
                         </div>
 
@@ -35,7 +35,7 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Project.Douration, new { @class = "form-label required" })
+                            @Html.LabelFor(m => m.Project.Douration, new { @class = "form-label " })
                             @Html.TextBoxFor(m => m.Project.Douration, null, new { @class = "form-control",@readonly="true"})
                         </div>
 
@@ -46,7 +46,7 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Project.Main_Field, new { @class = "form-label required" })
+                            @Html.LabelFor(m => m.Project.Main_Field, new { @class = "form-label " })
                             @Html.TextBoxFor(m => m.Project.Main_Field, null, new { @class = "form-control",@readonly="true"})
                         </div>
 
@@ -54,7 +54,7 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Project.Sub_Field, new { @class = "form-label required" })
+                            @Html.LabelFor(m => m.Project.Sub_Field, new { @class = "form-label " })
                             @Html.TextBoxFor(m => m.Project.Sub_Field, null, new { @class = "form-control",@readonly="true"})
                         </div>
 
@@ -84,7 +84,7 @@
 
                 @* ============================== investggators information fields ====================================== *@
                 <div class="panel-heading">
-                    <center><h3 class="panel-title">بيانات الباحثين</h3></center>
+                    <center><h3 class="panel-title">  البيانات الرئيسية للباحثين الرئيسين </h3></center>
                     <br />
 
                 </div>
@@ -96,7 +96,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.investigator.Name, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.investigator.Name, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.investigator.Name, null, new { @class = "form-control",@readonly="true" })
                             </div>
 
@@ -105,7 +105,7 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.investigator.Academic_Rank, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.investigator.Academic_Rank, new { @class = "form-label " })
                                 <select name="Academic_Rank" class="form-select form-control" readonly="true">
                                     <option value=""></option>
                                     <option value="معيد" class="dropdown-item">معيد</option>
@@ -119,7 +119,7 @@
                         <div class="col-md-4">
 
                             <div class="form-group">
-                                @Html.LabelFor(m => m.investigator.Department, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.investigator.Department, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.investigator.Department, null, new { @class = "form-control",@readonly="true" })
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.investigator.College_Center, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.investigator.College_Center, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.investigator.College_Center, null, new { @class = "form-control",@readonly="true" })
                                 <span asp-validation-for="investigator.College_Center" class="text-danger"></span>
                             </div>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.investigator.Address_Of_Institiution, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.investigator.Address_Of_Institiution, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.investigator.Address_Of_Institiution, null, new { @class = "form-control",@readonly="true"})
                                 <span asp-validation-for="investigator.Address_Of_Institiution" class="text-danger"></span>
                             </div>
@@ -146,21 +146,21 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.investigator.Office_Phone, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.investigator.Office_Phone, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.investigator.Office_Phone, null, new { @class = "form-control",@readonly="true" })
                                 <span asp-validation-for="investigator.Office_Phone" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.investigator.Mobile_Number, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.investigator.Mobile_Number, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.investigator.Mobile_Number, null, new { @class = "form-control",@readonly="true"})
                                 <span asp-validation-for="investigator.Mobile_Number" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.investigator.Email, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.investigator.Email, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.investigator.Email, null, new { @class = "form-control",@readonly="true"})
                                 <span asp-validation-for="investigator.Email" class="text-danger"></span>
                             </div>
@@ -176,7 +176,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Ex_Inv_Name, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.Ex_Inv_Name, new { @class = "form-label " })
                                 <span asp-validation-for="Ex_Inv_Name" class="text-danger"></span>
                                 @Html.TextBoxFor(m => m.Ex_Inv_Name, null, new { @class = "form-control",@readonly="true"})
                             </div>
@@ -184,7 +184,7 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Ext_Inv_Academic_Rank, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.Ext_Inv_Academic_Rank, new { @class = "form-label " })
                                 <span asp-validation-for="Ext_Inv_Academic_Rank" class="text-danger"></span>
                                 <select name="Ex_Inv_Academic_Rank" class="form-select form-control" readonly="true">
                                     <option value=""></option>
@@ -198,7 +198,7 @@
                         <div class="col-md-4">
 
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Ext_Inv_Department, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.Ext_Inv_Department, new { @class = "form-label " })
                                 <span asp-validation-for="Ext_Inv_Department" class="text-danger"></span>
                                 @Html.TextBoxFor(m => m.Ext_Inv_Department, null, new { @class = "form-control",@readonly="true"})
                             </div>
@@ -208,7 +208,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Ext_inv_College_Center, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.Ext_inv_College_Center, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.Ext_inv_College_Center, null, new { @class = "form-control",@readonly="true"})
                                 <span asp-validation-for="Ext_inv_College_Center" class="text-danger"></span>
                             </div>
@@ -216,7 +216,7 @@
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Ext_Inv_Address_Of_Institiution, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.Ext_Inv_Address_Of_Institiution, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.Ext_Inv_Address_Of_Institiution, null, new { @class = "form-control",@readonly="true"})
                                 <span asp-validation-for="Ext_Inv_Address_Of_Institiution" class="text-danger"></span>
                             </div>
@@ -226,19 +226,19 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Ext_Inv_Office_Phone, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.Ext_Inv_Office_Phone, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.Ext_Inv_Office_Phone, null, new { @class = "form-control",@readonly="true" })
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Ext_Inv_Mobile_Number, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.Ext_Inv_Mobile_Number, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.Ext_Inv_Mobile_Number, null, new { @class = "form-control",@readonly="true" })
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                @Html.LabelFor(m => m.Ext_Inv_Email, new { @class = "form-label required" })
+                                @Html.LabelFor(m => m.Ext_Inv_Email, new { @class = "form-label " })
                                 @Html.TextBoxFor(m => m.Ext_Inv_Email, null, new { @class = "form-control",@readonly="true" })
                             </div>
                         </div>
@@ -249,7 +249,7 @@
 
                 @* ==============================  Finantial information fields ====================================== *@
                 <div class="panel-heading">
-                    <center><h3 class="panel-title"> ملخص البيانات المالية</h3></center>
+                    <center><h3 class="panel-title"> ملخص إجمالي تقديرات الميزانية   (بالريال السعودي)</h3></center>
                     <br />
                 </div>
 
@@ -266,7 +266,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    @Html.LabelFor(m => m.Financial_Section.Wages_Salaries, new { @class = "form-label required" })
+                                    @Html.LabelFor(m => m.Financial_Section.Wages_Salaries, new { @class = "form-label " })
                                 </td>
                                 <td>
                                     @Html.TextBoxFor(m => m.Financial_Section.Wages_Salaries, null, new { @class = "form-control", @readonly = "true" })
@@ -274,7 +274,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @Html.LabelFor(m => m.Financial_Section.Equepment_And_Accessories, new { @class = "form-label required" })
+                                    @Html.LabelFor(m => m.Financial_Section.Equepment_And_Accessories, new { @class = "form-label " })
                                 </td>
                                 <td>
                                     @Html.TextBoxFor(m => m.Financial_Section.Equepment_And_Accessories, null, new { @class = "form-control", @readonly = "true" })
@@ -282,7 +282,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @Html.LabelFor(m => m.Financial_Section.consumable, new { @class = "form-label required" })
+                                    @Html.LabelFor(m => m.Financial_Section.consumable, new { @class = "form-label " })
                                 </td>
                                 <td>
                                     @Html.TextBoxFor(m => m.Financial_Section.consumable, null, new { @class = "form-control", @readonly = "true" })
@@ -291,7 +291,7 @@
 
                             <tr>
                                 <td>
-                                    @Html.LabelFor(m => m.Financial_Section.Exchange_Visits, new { @class = "form-label required" })
+                                    @Html.LabelFor(m => m.Financial_Section.Exchange_Visits, new { @class = "form-label " })
                                 </td>
                                 <td>
                                     @Html.TextBoxFor(m => m.Financial_Section.Exchange_Visits, null, new { @class = "form-control", @readonly = "true" })
@@ -299,7 +299,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @Html.LabelFor(m => m.Financial_Section.Other_Expendtiure_items, new { @class = "form-label required" })
+                                    @Html.LabelFor(m => m.Financial_Section.Other_Expendtiure_items, new { @class = "form-label " })
                                 </td>
                                 <td>
                                     @Html.TextBoxFor(m => m.Financial_Section.Other_Expendtiure_items, null, new { @class = "form-control", @readonly = "true" })
@@ -307,7 +307,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    @Html.LabelFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, new { @class = "form-label required" })
+                                    @Html.LabelFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, new { @class = "form-label " })
                                 </td>
                                 <td>
                                     @Html.TextBoxFor(m => m.Financial_Section.External_Partner_Contract_include_Tax, null, new { @class = "form-control", @readonly = "true" })
@@ -315,7 +315,7 @@
                             </tr>
                             <tr style="background-color:#d7d7d7">
                                 <td>
-                                    @Html.LabelFor(m => m.Financial_Section.Total, new { @class = "form-label required" })
+                                    @Html.LabelFor(m => m.Financial_Section.Total, new { @class = "form-label " })
                                 </td>
                                 <td>
                                     @Html.TextBoxFor(m => m.Financial_Section.Total, null, new { @class = "form-control", @readonly = "true" })
@@ -329,19 +329,35 @@
 
                 @* ============================== End Finantial information fields ====================================== *@
 
-
                 <br />
             </div>
+
             <div class="panel-footer">
                 <div style="text-align:end">
-                    <a asp-action="ShowFile" asp-controller="Home" asp-route-FileName="@Model.Project.File_Path" class="btn btn-warning">ملف المشروع  <i class="fa fa-download fa-2x"></i></a>
+                    <a asp-action="ShowFile" asp-controller="Home" asp-route-FileName="@Model.Project.File_Path" class="btn btn-warning">ملف البحث  <i class="fa fa-download fa-2x"></i></a>
+                    @if(Model.Project.satatus == null)
+                    {
+                        <a asp-action="projectConfirmation" asp-controller="Home" asp-route-projectID="@Model.Project.ID" class="btn btn-success">إعتماد البحث  <i class="fa fa-circle-check fa-2x"></i> </a>
 
-                    <a asp-action="ProjectApprove" asp-controller="Home" asp-route-Project_ID="@Model.Project.ID" class="btn btn-success">إعتماد المشروع  <i class="fa fa-circle-check fa-2x"></i> </a>
+                        <a asp-action="ProjectReject" asp-controller="Home" asp-route-Project_ID="@Model.Project.ID" class="btn btn-danger">رفض إعتماد البحث  <i class="fa fa-ban fa-2x"></i>  </a>
+                    }
 
-                    <a asp-action="ProjectReject" asp-controller="Home" asp-route-Project_ID="@Model.Project.ID" class="btn btn-danger">رفض إعتماد المشروع  <i class="fa fa-ban fa-2x"></i>  </a>
+                    @if (Model.Project.satatus == 1)
+                    {
+                        <a class="btn btn-success">  حالة البحث : مقبول   <i class="fa fa-circle-check fa-2x"></i> </a>
+
+                    }
+
+                    @if (Model.Project.satatus == 0)
+                    {
+                        <a class="btn btn-danger"> حالة البحث : مرفوض  <i class="fa fa-ban fa-2x"></i> </a>
+
+                    }
                 </div>
             </div>
         </div>
 
     
+
+
 </div>

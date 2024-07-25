@@ -2,8 +2,6 @@
 using Core.Interfaces;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Collections;
-using System.Formats.Asn1;
 
 namespace Infrastructure.Repositories
 {
@@ -16,13 +14,13 @@ namespace Infrastructure.Repositories
         }
         public async Task<BaseResponse> Create(User User)
         {
-            var check_user =  await _db.Users.FirstOrDefaultAsync(m => m.UserName == User.UserName) ; 
+            var check_user = await _db.Users.FirstOrDefaultAsync(m => m.UserName == User.UserName);
 
-            if ( check_user == null )
+            if (check_user == null)
             {
                 var res = _db.Users.Add(User);
                 await _db.SaveChangesAsync();
-                return new BaseResponse { IsSuccess = true , Message = "تم اضافة المستخدم بنجاح" };
+                return new BaseResponse { IsSuccess = true, Message = "تم اضافة المستخدم بنجاح" };
             }
             else
             {
@@ -34,32 +32,32 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public Task<BaseResponse> DeleteById(int id)
+        public Task<BaseResponse> DeleteById(Guid id)
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<User> GetAll() => _db.Users.ToList();
 
-        public async Task<User> GetById(int id)
+        public async Task<User> GetById(Guid id)
         {
             User user = await _db.Users.FindAsync(id);
-            if ( user != null )
+            if (user != null)
                 return user;
 
-            return null; 
+            return null;
         }
 
         public async Task<User> GetByName(string Name)
         {
             User user = await _db.Users.FirstOrDefaultAsync(m => m.UserName == Name);
 
-            return user; 
+            return user;
         }
 
         public async Task<BaseResponse> Update(User User)
         {
-            var DbUser = await  _db.Users.FindAsync(User.ID);
+            var DbUser = await _db.Users.FindAsync(User.ID);
             if (DbUser != null)
             {
                 User.Create_At = DbUser.Create_At;

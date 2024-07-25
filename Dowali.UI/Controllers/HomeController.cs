@@ -39,7 +39,6 @@ public class HomeController : BaseController
         _invitgator = investgator;
     }
 
-
     public async Task<IActionResult> Index()
     {
         ProjectsDTO ProjectsData = new();
@@ -100,7 +99,6 @@ public class HomeController : BaseController
         }
 
     }
-
 
     public async Task<IActionResult> CreateProject(ProjectsDTO ProjectData)
     {
@@ -222,8 +220,6 @@ public class HomeController : BaseController
         return View("Create", ProjectData);
     }
 
-
-
     public async Task<IActionResult> Details(Guid ProjectId)
     {
         ProjectsDTO Information = new ProjectsDTO()
@@ -247,7 +243,20 @@ public class HomeController : BaseController
         return View(Information);
     }
 
-
+    public async Task<IActionResult> ProjectConfirmation(Guid projectID)
+    {
+        BaseResponse res = await _project.projectConfirmation(projectID);
+        if (res.IsSuccess == true)
+        {
+            BasicNotification("تم اعتماد المشروع", NotificationType.Success);
+            return RedirectToAction(nameof(Index));
+        }
+        else
+        {
+            BasicNotification("حدثت مشكلة في اعتماد المشروع الرجاء التواصل مع مسؤول النظام ", NotificationType.Error);
+            return RedirectToAction("Details", projectID);
+        }
+    }
 
     [AllowAnonymous]
     public async Task<IActionResult> ShowFile(string FileName)
@@ -256,7 +265,6 @@ public class HomeController : BaseController
         var file = await obj.GetFileInBytes(FileName);
         return File(file, "application/pdf", "Project_Information" + ".pdf");
     }
-
 
     public async Task<string> SaveFile(IFormFile file)
     {
@@ -271,7 +279,6 @@ public class HomeController : BaseController
         }
     }
 
-
     public async Task<string> ViewFile(string FileName)
     {
         try
@@ -284,5 +291,6 @@ public class HomeController : BaseController
             return null;
         }
     }
+
 
 }
