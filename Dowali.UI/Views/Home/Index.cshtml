@@ -5,23 +5,23 @@
     ViewData["Title"] = "الصفحة الرئيسية";
 }
 
-       <div class="row">
-           <div class="col-md-7">
-                <div class="block">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <center>البحوث</center>
-                        </div>
+<div class="row">
+    <div class="col-md-7">
+        <div class="block">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <center>البحوث</center>
+                </div>
 
-                        <div class="panel-body">
-                            <table class="table table-striped table-hover table-bordered">
+                <div class="panel-body">
+                    <table class="table table-striped table-hover table-bordered">
                         <thead>
-                            <th>عوان البحث </th>
-                            <th>الباحث الداخلي</th>
-                            <th>الباحث الخارجي</th>
-                            <th>اجمالي التكلفة</th>
-                            <th> حالة البحث </th>
-                            <th> تفاصيل البحث</th>
+                        <th>عوان البحث </th>
+                        <th>الباحث الداخلي</th>
+                        <th>الباحث الخارجي</th>
+                        <th>اجمالي التكلفة</th>
+                        <th> حالة البحث </th>
+                        <th> تفاصيل البحث</th>
                         </thead>
                         <tbody>
                             @foreach (var project in Model.Projects)
@@ -60,17 +60,67 @@
                                             break;
                                         default:
                                             <td>تحت الاجراء</td>
-                                        break;
+                                            break;
                                     }
 
                                     <td>
                                         <a asp-action="Details" asp-controller="Home" asp-route-ProjectId="@project.ID"><button class="btn btn-info">التفاصيل</button></a>
                                     </td>
 
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-5">
+
+        <div class="col-xl-6 col-lg-6">
+            <div class="card l-bg-cherry">
+                <div class="card-statistic-3 p-4">
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0"> <h4>عدد البحوث المسجة</h4></h5>
+                    </div>
+
+                    <div class="row align-items-center mb-2 d-flex">
+                        <br />
+                        <div class="col-4 text-center">
+                            <h2 class="align-items-center mb-0">
+                                3,243
+                            </h2>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@* ==================================================For future use ================================ *@
+@* <div class="container">
+    <div class="row ">
+        <div class="col-xl-6 col-lg-6">
+            <div class="card l-bg-cherry">
+                <div class="card-statistic-3 p-4">
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0"> <h4>عدد البحوث المسجة</h4></h5>
+                    </div>
+
+                    <div class="row align-items-center mb-2 d-flex">
+                        <br />
+                        <div class="col-4 text-center">
+                            <h2 class="align-items-center mb-0">
+                                3,243
+                            </h2>
+                        </div>
+                    </div>
 
 
                 </div>
@@ -150,23 +200,23 @@
 
 @* ======================================== End of the section =================================== *@
 
-            <!-- MultiStep Form -->
-            <div class="row" style="justify-content:center;display:flex">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row" style="justify-content:center;display:flex;text-align:center">
-                                <div class="col-md-6">
-                                    <a asp-action="Index" asp-controller="Home" class="btn btn-primary">الرئيسية</a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a asp-action="Create" asp-controller="Home" class="btn btn-secondary">ابدأ الخدمة</a>
-                                </div>
-                            </div>
-                        </div>
+<!-- MultiStep Form -->
+<div class="row" style="justify-content:center;display:flex">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="row" style="justify-content:center;display:flex;text-align:center">
+                    <div class="col-md-6">
+                        <a asp-action="Index" asp-controller="Home" class="btn btn-primary">الرئيسية</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-action="Create" asp-controller="Home" class="btn btn-secondary">ابدأ الخدمة</a>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
        </div>
 
 
