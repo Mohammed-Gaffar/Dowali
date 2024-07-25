@@ -7,29 +7,38 @@
 @{
 }
 
-<div style="justify-content:center;display:flex">
-    <div style="width:80%;margin:5%">
-        <div class="card">
-            <div class="card-header">
-                إضافة مستخدم
+<div class="block">
+
+        <div class="col-md-12">
+        <div style="justify-content:center;display:flex">
+            <div style="width:80%;margin:5%">
+                <div class="card">
+                    <div class="card-header">
+                        <center>
+                            تعديل مستخدم
+                        </center>
+                    </div>
+                    @using (Html.BeginForm("Edit", "Users", FormMethod.Post))
+                    {
+                        <div class="card-body">
+                            @Html.LabelFor(m => m.UserName, null, new { @class = "label-control" })
+                            @Html.TextBoxFor(m => m.UserName, null, new { @class = "form-control", autocomplete = "off", onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" })
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+
+                            <br />
+                            <select asp-for="Role" asp-items="@Html.GetEnumSelectList<Roles>()" class="form-select form-control">
+                            </select>
+                            <span asp-validation-for="Role" class="text-danger"></span>
+                        </div>
+
+                        <div class="card-footer" style="text-align:end">
+                            <br />
+                            <input type="submit" value="حفظ البيانات" class="btn btn-primary" />
+                        </div>
+                    }
+                </div>
+
             </div>
-            @using (Html.BeginForm("Edit", "Users", FormMethod.Post))
-            {
-                <div class="card-body">
-                    @Html.LabelFor(m => m.UserName, null, new { @class = "label-control" })
-                    @Html.TextBoxFor(m => m.UserName, null, new { @class = "form-control", autocomplete = "off", onkeypress = "return /[0-9a-zA-Z-ا-ي- -]/i.test(event.key)" })
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-
-                    <br />
-                    <select asp-for="Role" asp-items="@Html.GetEnumSelectList<Roles>()" class="form-select">
-                    </select>
-                    <span asp-validation-for="Role" class="text-danger"></span>
-                </div>
-
-                <div class="card-footer">
-                    <input type="submit" value="حفظ البيانات" class="btn btn-primary" />
-                </div>
-            }
         </div>
     </div>
 </div>

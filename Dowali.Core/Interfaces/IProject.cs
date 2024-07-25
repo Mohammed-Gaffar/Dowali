@@ -14,5 +14,7 @@ namespace Dowali.Core.Interfaces
         public Task<Project> GetProjectByID(Guid ProjectId);
 
         public Task<IEnumerable<Project>> GetUserProjects(string P_User);
+
+        public Task<BaseResponse> projectConfirmation(Guid projectID);
     }
 }

@@ -14,10 +14,10 @@ namespace Core.Interfaces
     public interface IUser
     {
         public IEnumerable<User> GetAll();
-        public Task<User> GetById(int id);
+        public Task<User> GetById(Guid id);
         public Task<BaseResponse> Create(User User);
         public Task<BaseResponse> Update(User User);
-        public Task<BaseResponse> DeleteById(int id);
+        public Task<BaseResponse> DeleteById(Guid id);
         public Task<User> GetByName(string Name);
     }
 }

@@ -3,9 +3,6 @@ using Core.Interfaces;
 using Infrastructure.Context;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Update;
 using PlayApp.Extentions;
 namespace PlayApp.Controllers
 {
@@ -16,7 +13,7 @@ namespace PlayApp.Controllers
 
         private readonly IUser _IUser;
 
-        public UsersController(IUser user,DowaliContext dbConn)
+        public UsersController(IUser user, DowaliContext dbConn)
         {
             _IUser = user;
             _db = dbConn;
@@ -30,7 +27,7 @@ namespace PlayApp.Controllers
             return View(Users);
         }
 
-        [Authorize(Roles ="Super_Admin,Admin")]
+        [Authorize(Roles = "Super_Admin,Admin")]
         public IActionResult create()
         {
             return View();
@@ -63,7 +60,7 @@ namespace PlayApp.Controllers
                 else
                 {
                     BasicNotification(res.Message, NotificationType.Error);
-                    return RedirectToAction(nameof(create),user);
+                    return RedirectToAction(nameof(create), user);
                 }
             }
             else
@@ -73,9 +70,9 @@ namespace PlayApp.Controllers
         }
 
         [Authorize(Roles = "Super_Admin,Admin")]
-        public async Task<IActionResult> Edit(int Id)
+        public async Task<IActionResult> Edit(Guid Id)
         {
-            var user  = await _IUser.GetById(Id);
+            var user = await _IUser.GetById(Id);
             return View(user);
         }
 
@@ -84,12 +81,12 @@ namespace PlayApp.Controllers
         public async Task<IActionResult> Edit(User user)
         {
             User updatedUser;
-            BaseResponse res; 
+            BaseResponse res;
 
             if (ModelState.IsValid)
             {
-                 
-                if (User.Identity.Name != null )
+
+                if (User.Identity.Name != null)
                 {
                     updatedUser = await _IUser.GetByName(User.Identity.Name);
                 }
@@ -102,16 +99,17 @@ namespace PlayApp.Controllers
                 user.Update_At = DateTime.Now;
                 try
                 {
-                     res = await _IUser.Update(user);
+                    res = await _IUser.Update(user);
                 }
                 catch (Exception ex)
                 {
                     BasicNotification(ex.Message, NotificationType.Error);
                     return RedirectToAction(nameof(Index));
                 }
-                
 
-                if (res.IsSuccess == true) {
+
+                if (res.IsSuccess == true)
+                {
                     BasicNotification("تم تحديث البانات ", NotificationType.Info);
                     return RedirectToAction(nameof(Index));
                 }
