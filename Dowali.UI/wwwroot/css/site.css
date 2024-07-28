@@ -54,7 +54,8 @@ html {
 .block {
     justify-content:center;
     display:flex;
-    padding:2%
+    padding:2%;
+    width:fit-content;
 }
 
 
@@ -141,9 +142,10 @@ html {
     background-color: #c59944;
     border-radius: 10px 0px 0px 10px;
     height: fit-content;
-    margin-top: 18% ;
+    margin-top: 18%;
     position: fixed;
     margin-right: 49px;
+    z-index: 1;
 }
 
 /*===========================DropDown items=======================*/
@@ -199,7 +201,7 @@ html {
 
 #main-container {
        height:1050px !important;
-        padding-right:5%
+      
 
 }
 

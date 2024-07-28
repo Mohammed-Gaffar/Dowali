@@ -104,30 +104,32 @@ public class HomeController : BaseController
     {
         User userdata = new();
 
-        if (ProjectData.Project.File != null)
-        {
-            string ext = Path.GetExtension(ProjectData.Project.File.FileName);
-            if (ext.ToLower() != ".pdf")
-            {
-                BasicNotification("الملفات المسموحة هي الملفات ذات الامتداد .PDF فقط ", NotificationType.Error);
-                return View(nameof(Index));
-            }
-            else
-            {
-                var newfilename = await SaveFile(ProjectData.Project.File);
-                ProjectData.Project.File_Path = newfilename;
-            }
-        }
+       
 
         if (ModelState.IsValid == true)
         {
+            if (ProjectData.Project.File != null)
+            {
+                string ext = Path.GetExtension(ProjectData.Project.File.FileName);
+                if (ext.ToLower() != ".pdf")
+                {
+                    BasicNotification("الملفات المسموحة هي الملفات ذات الامتداد .PDF فقط ", NotificationType.Error);
+                    return View(nameof(Index));
+                }
+                else
+                {
+                    var newfilename = await SaveFile(ProjectData.Project.File);
+                    ProjectData.Project.File_Path = newfilename;
+                }
+            }
+
             if (User.Identity.Name != null)
             {
                 userdata = await _user.GetByName(User.Identity.Name);
 
                 ProjectData.Project.Create_At = DateTime.Now;
                 ProjectData.Project.Created_by = userdata.ID;
-                ProjectData.Project.satatus = null;    // project status on creation in null not checked 
+                ProjectData.Project.satatus = null;                             // project status on creation in null not checked 
                 ProjectData.Project.owner = userdata.UserName;
             }
             else
@@ -147,7 +149,7 @@ public class HomeController : BaseController
                 Guid Project_ID = _project.GetProjectID(project);
 
                 ProjectData.investigator.Project_Id = Project_ID;
-                ProjectData.investigator.Inv_Type = 0;                  //Internal Investgator 
+                ProjectData.investigator.Inv_Type = 0;                          //Internal Investgator 
 
                 investigator.Created_by = userdata.ID;
                 investigator.Create_At = DateTime.Now;
@@ -164,7 +166,7 @@ public class HomeController : BaseController
                         Email = ProjectData.Ext_Inv_Email,
                         Name = ProjectData.Ex_Inv_Name,
                         Project_Id = Project_ID,
-                        Inv_Type = 1,                                       //External Invetgator
+                        Inv_Type = 1,                                           //External Invetgator
                         Mobile_Number = ProjectData.Ext_Inv_Mobile_Number,
                         Office_Phone = ProjectData.Ext_Inv_Office_Phone,
                         Department = ProjectData.Ext_Inv_Department,
