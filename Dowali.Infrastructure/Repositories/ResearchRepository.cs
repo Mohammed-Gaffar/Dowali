@@ -15,59 +15,60 @@ using Infrastructure.Context;
 
 namespace Dowali.Infrastructure.Repositories
 {
-    public class ProjectRepository : IProject
+    public class ResearchRepository : IResearch
     {
         private readonly DowaliContext _dbcon;
 
-        public ProjectRepository(DowaliContext dbcon)
+        public ResearchRepository(DowaliContext dbcon)
         {
             _dbcon = dbcon;
         }
 
-        public async Task<BaseResponse> CreateProject(Project Project)
+        public async Task<BaseResponse> CreateProject(Research Project)
         {
-            _dbcon.Projects.Add(Project);
+            _dbcon.Researches.Add(Project);
             await _dbcon.SaveChangesAsync();
 
             return new BaseResponse { IsSuccess = true, Message = "project added" };
         }
 
-        public async Task<IEnumerable<Project>> GetAllProjects()
+        public async Task<IEnumerable<Research>> GetAllResearches()
         {
-            IEnumerable<Project> projects = _dbcon.Projects;
+            IEnumerable<Research> Researches = _dbcon.Researches;
 
-            return projects;
+            return Researches;
         }
 
-        public async Task<Project> GetProjectByID(Guid ProjectId)
+        public async Task<Research> GetProjectByID(Guid ProjectId)
         {
-            Project project = await _dbcon.Projects.FindAsync(ProjectId);
+            Research project = await _dbcon.Researches.FindAsync(ProjectId);
             return project;
         }
 
-        public Guid GetProjectID(Project Project)
+        public Guid GetProjectID(Research Project)
         {
 
-            var Db_Project = _dbcon.Projects.FirstOrDefault(x => x.Main_Field == Project.Main_Field);
+            var Db_Project = _dbcon.Researches.FirstOrDefault(x => x.Main_Field == Project.Main_Field);
             return Db_Project.ID;
         }
 
-        public async Task<IEnumerable<Project>> GetUserProjects(string P_User)
-        {
-            IEnumerable<Project> projects = _dbcon.Projects.Where(x => x.owner == P_User);
 
-            return projects;
+        public async Task<IEnumerable<Research>> GetUserResearches(string P_User)
+        {
+            IEnumerable<Research> Researches = _dbcon.Researches.Where(x => x.owner == P_User);
+
+            return Researches;
         }
 
         public async Task<BaseResponse> projectConfirmation(Guid projectID)
         {
-            var db_project = _dbcon.Projects.Find(projectID);
+            var db_project = _dbcon.Researches.Find(projectID);
 
             if (db_project != null)
             {
                 db_project.satatus = 1;
 
-                var res = _dbcon.Projects.Update(db_project);
+                var res = _dbcon.Researches.Update(db_project);
                 await _dbcon.SaveChangesAsync();
 
                 return new BaseResponse { IsSuccess = true };
@@ -81,9 +82,9 @@ namespace Dowali.Infrastructure.Repositories
         }
 
 
-        //public Task<IEnumerable<Project>> GetProjectsWithData()
+        //public Task<IEnumerable<Project>> GetResearchesWithData()
         //{
-        //IEnumerable<ProjectsDTO> result = from project in _dbcon.Projects
+        //IEnumerable<ResearchesDTO> result = from project in _dbcon.Researches
         //             join investgators in _dbcon.Investigators on project.ID equals investgators.Project_Id
         //             join Financtial in _dbcon.Financial_Sections on project.ID equals Financtial.Project_Id
         //             select new

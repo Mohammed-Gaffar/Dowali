@@ -118,11 +118,11 @@
                     </div>
 
                     <div class="dropdown">
-                        <button class="dropbtn">المشاريع</button>
+                        <button class="dropbtn">البحوث</button>
                         <div class="dropdown-content">
-                            <a asp-action="Index" asp-controller="Home" class="first-item">المشاريع</a>
+                            <a asp-action="Index" asp-controller="Home" class="first-item">البحوث</a>
                             <hr style="margin:0" />
-                            <a asp-action="Create" asp-controller="Home" class="last-item">اضافة مشروع</a>
+                            <a asp-action="Create" asp-controller="Home" class="last-item">اضافة بحث </a>
                         </div>
                     </div>
                     @if (User.IsInRole("Super_Admin") || User.IsInRole("Admin"))

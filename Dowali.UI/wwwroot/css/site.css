@@ -55,7 +55,8 @@ html {
     justify-content:center;
     display:flex;
     padding:2%;
-    width:fit-content;
+    width:auto;
+
 }
 
 
@@ -173,7 +174,6 @@ html {
     margin-right: 70%;
     z-index: 1;
     width:90%;
-    font-weight:800;
 }
 
     .dropdown-content a {

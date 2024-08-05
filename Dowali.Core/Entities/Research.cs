@@ -15,9 +15,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Dowali.Core.Entities
 {
-    [Index(nameof(Project.owner), IsUnique = true)]
+    [Index(nameof(Research.owner), IsUnique = true)]
 
-    public class Project : BaseEntity
+    public class Research : BaseEntity
     {
         [Required(ErrorMessage = "اسم البحث باللغة العربية الزامي")]
         [MaxLength(255)]

@@ -35,7 +35,7 @@ namespace Infrastructure.Context
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<Research> Researches { get; set; }
 
         public DbSet<Investigator> Investigators { get; set; }
 

@@ -25,17 +25,17 @@ public class HomeController : BaseController
     private readonly ILogger<HomeController> _logger;
 
     private readonly IUser _user;
-    private readonly IProject _project;
+    private readonly IResearch _Researche;
     private readonly IInvestgator _invitgator;
     private readonly IFinancial _financial;
 
 
-    public HomeController(ILogger<HomeController> logger, IUser user, IProject project, IInvestgator investgator, IFinancial financial)
+    public HomeController(ILogger<HomeController> logger, IUser user, IResearch project, IInvestgator investgator, IFinancial financial)
     {
         _logger = logger;
         _user = user;
         _financial = financial;
-        _project = project;
+        _Researche = project;
         _invitgator = investgator;
     }
 
@@ -45,12 +45,12 @@ public class HomeController : BaseController
 
         if (User.IsInRole("Super_Admin") || User.IsInRole("Admin"))
         {
-            ProjectsData.Projects = await _project.GetAllProjects();
+            ProjectsData.Projects = await _Researche.GetAllResearches();
             ProjectsData.ProjectInvestigators = await _invitgator.GetAllInvestgators();
             ProjectsData.Projectinancial_Section = await _financial.GetAllFinanctial();
         }
 
-        ProjectsData.Projects = await _project.GetUserProjects(User.Identity.Name);
+        ProjectsData.Projects = await _Researche.GetUserResearches(User.Identity.Name);
         //ProjectsData.ProjectInvestigators = await _invitgator.GetUserInvestgators();
         //ProjectsData.Projectinancial_Section = await _financial.GetUserFinanctial();
 
@@ -104,32 +104,30 @@ public class HomeController : BaseController
     {
         User userdata = new();
 
-       
+        if (ProjectData.Project.File != null)
+        {
+            string ext = Path.GetExtension(ProjectData.Project.File.FileName);
+            if (ext.ToLower() != ".pdf")
+            {
+                BasicNotification("الملفات المسموحة هي الملفات ذات الامتداد .PDF فقط ", NotificationType.Error);
+                return View(nameof(Index));
+            }
+            else
+            {
+                var newfilename = await SaveFile(ProjectData.Project.File);
+                ProjectData.Project.File_Path = newfilename;
+            }
+        }
 
         if (ModelState.IsValid == true)
         {
-            if (ProjectData.Project.File != null)
-            {
-                string ext = Path.GetExtension(ProjectData.Project.File.FileName);
-                if (ext.ToLower() != ".pdf")
-                {
-                    BasicNotification("الملفات المسموحة هي الملفات ذات الامتداد .PDF فقط ", NotificationType.Error);
-                    return View(nameof(Index));
-                }
-                else
-                {
-                    var newfilename = await SaveFile(ProjectData.Project.File);
-                    ProjectData.Project.File_Path = newfilename;
-                }
-            }
-
             if (User.Identity.Name != null)
             {
                 userdata = await _user.GetByName(User.Identity.Name);
 
                 ProjectData.Project.Create_At = DateTime.Now;
                 ProjectData.Project.Created_by = userdata.ID;
-                ProjectData.Project.satatus = null;                             // project status on creation in null not checked 
+                ProjectData.Project.satatus = null;    // project status on creation in null not checked 
                 ProjectData.Project.owner = userdata.UserName;
             }
             else
@@ -138,18 +136,18 @@ public class HomeController : BaseController
                 return View(nameof(Index));
             }
 
-            Project project = ProjectData.Project;
+            Research project = ProjectData.Project;
             Investigator investigator = ProjectData.investigator;
             Financial_Section financial = ProjectData.Financial_Section;
 
-            BaseResponse res = await _project.CreateProject(project);
+            BaseResponse res = await _Researche.CreateProject(project);
 
             if (res.IsSuccess == true)
             {
-                Guid Project_ID = _project.GetProjectID(project);
+                Guid Project_ID = _Researche.GetProjectID(project);
 
                 ProjectData.investigator.Project_Id = Project_ID;
-                ProjectData.investigator.Inv_Type = 0;                          //Internal Investgator 
+                ProjectData.investigator.Inv_Type = 0;                  //Internal Investgator 
 
                 investigator.Created_by = userdata.ID;
                 investigator.Create_At = DateTime.Now;
@@ -166,7 +164,7 @@ public class HomeController : BaseController
                         Email = ProjectData.Ext_Inv_Email,
                         Name = ProjectData.Ex_Inv_Name,
                         Project_Id = Project_ID,
-                        Inv_Type = 1,                                           //External Invetgator
+                        Inv_Type = 1,                                       //External Invetgator
                         Mobile_Number = ProjectData.Ext_Inv_Mobile_Number,
                         Office_Phone = ProjectData.Ext_Inv_Office_Phone,
                         Department = ProjectData.Ext_Inv_Department,
@@ -226,7 +224,7 @@ public class HomeController : BaseController
     {
         ProjectsDTO Information = new ProjectsDTO()
         {
-            Project = await _project.GetProjectByID(ProjectId),
+            Project = await _Researche.GetProjectByID(ProjectId),
             investigator = await _invitgator.GetInternalInvestgatorByProjectId(ProjectId),
             Financial_Section = await _financial.GetFinantialByProjectID(ProjectId),
         };
@@ -247,7 +245,7 @@ public class HomeController : BaseController
 
     public async Task<IActionResult> ProjectConfirmation(Guid projectID)
     {
-        BaseResponse res = await _project.projectConfirmation(projectID);
+        BaseResponse res = await _Researche.projectConfirmation(projectID);
         if (res.IsSuccess == true)
         {
             BasicNotification("تم اعتماد المشروع", NotificationType.Success);
