@@ -5,10 +5,18 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    var selectList = Enum.GetValues(typeof(Roles))
+                        .Cast<Roles>()
+                        .Where(e => e != Roles.Super_Admin)
+                        .Select(e => new SelectListItem
+                                {
+                                    Value = ((int)e).ToString(),
+                                    Text = e.ToString()
+                                });
 }
 
-    <div class="block" style="justify-content:center;display:flex;padding:2%">
-        <div class="col-md-10">
+<div class="block">
+    <div class="col-md-10">
 
         <div class="card">
             <div class="card-header">
@@ -24,10 +32,15 @@
                         <span asp-validation-for="UserName" class="text-danger"></span>
 
                         <br />
-                        <select asp-for="Role" asp-items="@Html.GetEnumSelectList<Roles>()" class="form-select form-control">
-                        </select>
+                        @Html.DropDownListFor(m => m.Role, selectList, new { @class = "from-select form-control" })
+                        @*  <select asp-for="Role" asp-items="@Html.GetEnumSelectList<Roles>()" class="form-select form-control">
+                    </select> *@
                         <span asp-validation-for="Role" class="text-danger"></span>
                     </div>
+
+
+
+
 
                     <br />
 
@@ -38,13 +51,13 @@
             </div>
 
         </div>
-        </div>
     </div>
+</div>
 
 
 
 
-@section scripts{
+@section scripts {
     <partial name="_NotificationPartial" />
     <partial name="_ValidationScriptsPartial" />
 
