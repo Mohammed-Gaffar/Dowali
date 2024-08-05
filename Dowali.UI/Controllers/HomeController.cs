@@ -280,7 +280,6 @@ public class HomeController : BaseController
             return null;
         }
     }
-
     public async Task<string> ViewFile(string FileName)
     {
         try
@@ -293,6 +292,5 @@ public class HomeController : BaseController
             return null;
         }
     }
-
 
 }
