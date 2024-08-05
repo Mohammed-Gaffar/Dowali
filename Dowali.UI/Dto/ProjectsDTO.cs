@@ -7,7 +7,7 @@ namespace Dowali.UI.Dto
 {
     public class ProjectsDTO
     {
-        public Project Project { get; set; }
+        public Research Project { get; set; }
 
         public Investigator investigator { get; set; }
 
@@ -68,7 +68,7 @@ namespace Dowali.UI.Dto
 
         [AllowNull]
         [NotMapped]
-        public IEnumerable<Project>? Projects { get; set; }
+        public IEnumerable<Research>? Projects { get; set; }
 
         [AllowNull]
         [NotMapped]
