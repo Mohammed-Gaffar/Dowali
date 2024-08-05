@@ -55,8 +55,7 @@ html {
     justify-content:center;
     display:flex;
     padding:2%;
-    width:auto;
-
+    width:fit-content;
 }
 
 
